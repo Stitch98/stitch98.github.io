@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html>
 <head>
     <title>Fossil Mashup</title>
 </head>
@@ -37,22 +39,17 @@
         return flag;
 	}	
 
-	var row = new Array(new Array("OMASTAR", 3, "WATER", "SWIFT SWIM", "SHELL ARMOR", "WEAK ARMOR", 3, 2, 6, 5, 3, 1, 60),
-						new Array("KABUTOPS", 4, "WATER", "SWIFT SWIM", "BATTLE ARMOR", "WEAK ARMOR", 1, 6, 5, 2, 3, 4, 115),
-						new Array("AERODACTYL", 4, "FLYING", "ROCK HEAD", "PRESSURE", "UNNERVE", 4, 5, 1, 2, 3, 6, 105),
-						new Array("CRADILY", 3, "GRASS", "SUCTION CUPS", NULL, "STORM DRAIN", 4, 2, 5, 2, 6, 1, 81),
-						new Array("ARMALDO", 4, "BUG", "BATTLE ARMOR", NULL, "SWIFT SWIM", 3, 6, 5, 2, 4, 1, 125),
-						new Array("RAMPARDOS", 5, "ROCK", "MOLD BREAKER", NULL, "SHEER FORCE", 5, 6, 3, 4, 1, 2, 165),
-						new Array("BASTIODON", 6, "STEEL", "STURDY", NULL, "SOUNDPROOF", 4, 3, 6, 2, 5, 1, 52),
-						new Array("CARRACOSTA", 5, "WATER", "SOLID ROCK", "STURDY", "SWIFT SWIM", 3, 6, 5, 4, 2, 1, 108),
-						new Array("ARCHEOPS", 5, "FLYING", "DEFEATIST", NULL, "DEFEATIST", 3, 6, 1, 5, 1, 4, 140), 
-						new Array("TYRANTRUM", 4, "DRAGON", "STRONG JAW", NULL, "ROCK HEAD", 4, 6, 5, 2, 1, 3, 121), 
-						new Array("AURORUS", 4, "ICE", "REFRIGERATE", NULL, "SNOW WARNING", 6, 3, 2, 5, 4, 1, 77));
-	var string1, string2, string3;
-	for(f of row){ string2 += "<option value=" + f[0] + '>' + f[0] + "</option>"; }
-	document.getElementById("p10").innerHTML = string2;
-	for(f of row){ string3 += "<option value=" + f[0] + '>' + f[0] + "</option>"; }
-	document.getElementById("p11").innerHTML = string3;
+	var row = [["OMASTAR", 3, "WATER", "SWIFT SWIM", "SHELL ARMOR", "WEAK ARMOR", 3, 2, 6, 5, 3, 1, 60],
+				["KABUTOPS", 4, "WATER", "SWIFT SWIM", "BATTLE ARMOR", "WEAK ARMOR", 1, 6, 5, 2, 3, 4, 115],
+				["AERODACTYL", 4, "FLYING", "ROCK HEAD", "PRESSURE", "UNNERVE", 4, 5, 1, 2, 3, 6, 105],
+				["CRADILY", 3, "GRASS", "SUCTION CUPS", NULL, "STORM DRAIN", 4, 2, 5, 2, 6, 1, 81],
+				["ARMALDO", 4, "BUG", "BATTLE ARMOR", NULL, "SWIFT SWIM", 3, 6, 5, 2, 4, 1, 125],
+				["RAMPARDOS", 5, "ROCK", "MOLD BREAKER", NULL, "SHEER FORCE", 5, 6, 3, 4, 1, 2, 165],
+				["BASTIODON", 6, "STEEL", "STURDY", NULL, "SOUNDPROOF", 4, 3, 6, 2, 5, 1, 52],
+				["CARRACOSTA", 5, "WATER", "SOLID ROCK", "STURDY", "SWIFT SWIM", 3, 6, 5, 4, 2, 1, 108],
+				["ARCHEOPS", 5, "FLYING", "DEFEATIST", NULL, "DEFEATIST", 3, 6, 1, 5, 1, 4, 140], 
+				["TYRANTRUM", 4, "DRAGON", "STRONG JAW", NULL, "ROCK HEAD", 4, 6, 5, 2, 1, 3, 121], 
+				["AURORUS", 4, "ICE", "REFRIGERATE", NULL, "SNOW WARNING", 6, 3, 2, 5, 4, 1, 77]];
 	</script> 
 
 	<font face='Arial'>
@@ -62,10 +59,10 @@
 		<tr>
 			<td>Fusees:</td>
 			<td><select name="fusee1">
-			<option value=NULL> -- Head -- </option>
+			<option value=""> -- Head -- </option>
 			<p id="p10">Hello World!</p></select>
 			</td><td><select name="fusee2">
-			<option value=NULL> -- Tail -- </option>
+			<option value=""> -- Tail -- </option>
 			<p id="p11">Hello World!</p></select></td>
 		</tr>
 		<tr>
@@ -77,21 +74,23 @@
 		</tr>
 	</table>
 	</form>
-	<p id="p1">Hello World!</p>
-	<script>
-			</script></td>
-			</tr></table></td>
-		</tr></table>
-	</font></p><script>
+	<p id="p1">Hello World!</p><script>
+	var string1, string2, string3;
+	for(var i = 0; i < row.length; i++){ string2 += "<option value='" + row[i][0] + "'>" + row[i][0] + "</option>"; }
+	document.getElementById("p10").innerHTML = string2;
+	for(var i = 0; i < row.length; i++){ string3 += "<option value='" + row[i][0] + "'>" + row[i][0] + "</option>"; }
+	document.getElementById("p11").innerHTML = string3;
 	if(anyset()){
 		var head, tail, hname, tname, h, t, name;
-		if(isset(validateForm("Randomize")){
+		/* if(isset(validateForm("Randomize")){
 			h = rand(0, row.length - 1);
 			t = rand(0, row.length - 1);
-			if(h == t) h = ++h % row.length;
+			if(h == t) 
+				h = ++h % row.length;
 			head = row[h];
 			tail = row[t];
-		} else if(areset(new Array('fusee1', 'fusee2', 'x'))) {
+		}*/
+		if(areset(new Array('fusee1', 'fusee2', 'x'))) {
 			hname = validateForm('fusee1');
 			tname = validateForm('fusee2');
 			for(f of row){
@@ -99,7 +98,6 @@
 				if(f[0] == tname) tail = f;
 			}
 		}
-
 		name  = tail[0].substr(0, $tail[1]) + head[0].substr(head[1], head[0].length - 1);
 		string1 += "<table border='2'><tr> <td><table border='1'><tr><td width='60'> <p>Name:</p> <p>Head:</p> <p>Tail:</p> <p>Type:</p> <p>Ability1:</p> <p>Ability2:</p> <p>HAbility:</p> </td><td width='100'>";
 		string1 += "<p>" + name.toLowerCase() + "</p> <p>" + head[0].toLowerCase() + "</p> <p>" + tail[0].toLowerCase() + "</p> <p><input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + head[2].toLowerCase() + ".png'>";
@@ -128,7 +126,7 @@
 			if(bst == 510){
 				val[most[0]] -= 5;
 				bst -= 5;
-			} elseif(bst == 500){
+			} else if(bst == 500){
 				val[most[0]] += 5;
 				bst += 5;
 			} 
@@ -144,7 +142,8 @@
 				string1 += '<tr><td width=120>' + $stat + '</td></tr>'; 
 			string1 += '<tr><td width=110>' + $bst + '</td></tr>'; 
 			string1 += '</table></td><td><input type="image" src="https://play.pokemonshowdown.com/sprites/dex/' + strtolower($tail[0]) + '.png">';
-		document.getElementById("p2").innerHTML = string1; 
-	}
+	} else string1 = "";
+	document.getElementById().value = string1 + "</td></tr></table></td></tr></table></font></p>";
 	</script>
 </body>
+</html>
