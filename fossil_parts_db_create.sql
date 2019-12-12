@@ -14,38 +14,39 @@ create table FOSSIL_PART (
 	SPD INTEGER NOT NULL,
 	SPE INTEGER NOT NULL,
 	SPRITE CHAR(100) NOT NULL,
+	ATTACK INTEGER NOT NULL,
 	PRIMARY KEY(NAME)
 );
 
-INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, ABILITY2, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-	VALUES ("OMASTAR", 3, "WATER", "SWIFT SWIM", "SHELL ARMOR", "WEAK ARMOR", 3, 2, 6, 5, 3, 1, "https://play.pokemonshowdown.com/sprites/dex/omastar.png");
+INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, ABILITY2, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE, ATTACK)
+	VALUES ("OMASTAR", 3, "WATER", "SWIFT SWIM", "SHELL ARMOR", "WEAK ARMOR", 3, 2, 6, 5, 3, 1, "https://play.pokemonshowdown.com/sprites/dex/omastar.png", 60);
 
-INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, ABILITY2, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-	VALUES ("KABUTOPS", 4, "WATER", "SWIFT SWIM", "BATTLE ARMOR", "WEAK ARMOR", 1, 6, 5, 2, 3, 4, "https://play.pokemonshowdown.com/sprites/dex/kabutops.png");
+INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, ABILITY2, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE, ATTACK)
+	VALUES ("KABUTOPS", 4, "WATER", "SWIFT SWIM", "BATTLE ARMOR", "WEAK ARMOR", 1, 6, 5, 2, 3, 4, "https://play.pokemonshowdown.com/sprites/dex/kabutops.png", 115);
 
-INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, ABILITY2, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-	VALUES ("AERODACTYL", 4, "FLYING", "ROCK HEAD", "PRESSURE", "UNNERVE", 4, 5, 1, 2, 3, 6, "https://play.pokemonshowdown.com/sprites/dex/aerodactyl.png");
+INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, ABILITY2, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE, ATTACK)
+	VALUES ("AERODACTYL", 4, "FLYING", "ROCK HEAD", "PRESSURE", "UNNERVE", 4, 5, 1, 2, 3, 6, "https://play.pokemonshowdown.com/sprites/dex/aerodactyl.png", 105);
 
-INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-	VALUES ("CRADILY", 3, "GRASS", "SUCTION CUPS", "STORM DRAIN", 4, 2, 5, 2, 6, 1, "https://play.pokemonshowdown.com/sprites/dex/cradily.png");
+INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE, ATTACK)
+	VALUES ("CRADILY", 3, "GRASS", "SUCTION CUPS", "STORM DRAIN", 4, 2, 5, 2, 6, 1, "https://play.pokemonshowdown.com/sprites/dex/cradily.png", 81);
 
-INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-	VALUES ("ARMALDO", 4, "BUG", "BATTLE ARMOR", "SWIFT SWIM", 3, 6, 5, 2, 4, 1, "https://play.pokemonshowdown.com/sprites/dex/armaldo.png");
+INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE, ATTACK)
+	VALUES ("ARMALDO", 4, "BUG", "BATTLE ARMOR", "SWIFT SWIM", 3, 6, 5, 2, 4, 1, "https://play.pokemonshowdown.com/sprites/dex/armaldo.png", 125);
 
-INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-	VALUES ("RAMPARDOS", 5, "ROCK", "MOLD BREAKER", "SHEER FORCE", 5, 6, 3, 4, 1, 2, "https://play.pokemonshowdown.com/sprites/dex/rampardos.png");
+INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE, ATTACK)
+	VALUES ("RAMPARDOS", 5, "ROCK", "MOLD BREAKER", "SHEER FORCE", 5, 6, 3, 4, 1, 2, "https://play.pokemonshowdown.com/sprites/dex/rampardos.png", 165);
 
-INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-	VALUES ("BASTIODON", 6, "STEEL", "STURDY", "SOUNDPROOF", 4, 3, 6, 2, 5, 1, "https://play.pokemonshowdown.com/sprites/dex/bastiodon.png");
+INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE, ATTACK)
+	VALUES ("BASTIODON", 6, "STEEL", "STURDY", "SOUNDPROOF", 4, 3, 6, 2, 5, 1, "https://play.pokemonshowdown.com/sprites/dex/bastiodon.png", 52);
 
-INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, ABILITY2, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-	VALUES ("CARRACOSTA", 5, "WATER", "SOLID ROCK", "STURDY", "SWIFT SWIM", 3, 6, 5, 4, 2, 1, "https://play.pokemonshowdown.com/sprites/dex/carracosta.png");
+INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, ABILITY2, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE, ATTACK)
+	VALUES ("CARRACOSTA", 5, "WATER", "SOLID ROCK", "STURDY", "SWIFT SWIM", 3, 6, 5, 4, 2, 1, "https://play.pokemonshowdown.com/sprites/dex/carracosta.png", 108);
 
-INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-	VALUES ("ARCHEOPS", 5, "FLYING", "DEFEATIST", "DEFEATIST", 3, 6, 1, 5, 1, 4, "https://play.pokemonshowdown.com/sprites/dex/archeops.png");
+INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE, ATTACK)
+	VALUES ("ARCHEOPS", 5, "FLYING", "DEFEATIST", "DEFEATIST", 3, 6, 1, 5, 1, 4, "https://play.pokemonshowdown.com/sprites/dex/archeops.png", 140);
 
-INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-	VALUES ("TYRANTRUM", 4, "DRAGON", "STRONG JAW", "ROCK HEAD", 4, 6, 5, 2, 1, 3, "https://play.pokemonshowdown.com/sprites/dex/tyrantrum.png");
+INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE, ATTACK)
+	VALUES ("TYRANTRUM", 4, "DRAGON", "STRONG JAW", "ROCK HEAD", 4, 6, 5, 2, 1, 3, "https://play.pokemonshowdown.com/sprites/dex/tyrantrum.png", 121);
 
-INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-	VALUES ("AURORUS", 4, "ICE", "REFRIGERATE", "SNOW WARNING", 6, 3, 2, 5, 4, 1, "https://play.pokemonshowdown.com/sprites/dex/aurorus.png");
+INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE, ATTACK)
+	VALUES ("AURORUS", 4, "ICE", "REFRIGERATE", "SNOW WARNING", 6, 3, 2, 5, 4, 1, "https://play.pokemonshowdown.com/sprites/dex/aurorus.png", 77);

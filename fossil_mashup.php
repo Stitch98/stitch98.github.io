@@ -2,9 +2,10 @@
     <title>Fossil Mashup</title>
 </head>
 <body>
-	<?php 
+	<p style={background-color:#020202}><?php 
+
 	function sql_con_query(&$con, $db, $sql){
-        $con = mysqli_connect('localhost','root','',$db); 
+        $con = mysqli_connect('stitch98.github.io','stitch98','',$db); 
         if (mysqli_connect_errno()) 
             die ('Failed to connect to MySQL: ' . mysqli_connect_error());
         return mysqli_query($con, $sql);
@@ -26,83 +27,7 @@
                 $flag = false;
         }
         return $flag;
-    }	
-
-    $servername = "stitch98.github.io";
-    $username = "username";
-    $password = "password";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password);
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Create database
-    $sql = "CREATE DATABASE fossil_mashup";
-    if ($conn->query($sql) === TRUE) {
-        echo "Database created successfully";
-    } else {
-        echo "Error creating database: " . $conn->error;
-    }
-
-    $sql = "/* drop table FOSSIL_PART; */
-
-    create table FOSSIL_PART (
-        NAME CHAR(40) NOT NULL,
-        HEAD_N INTEGER NOT NULL,
-        TYPE CHAR(20) NOT NULL,
-        ABILITY1 CHAR(20) NOT NULL,
-        ABILITY2 CHAR(20),
-        HABILITY CHAR(20) NOT NULL,
-        HP INTEGER NOT NULL,
-        ATK INTEGER NOT NULL,
-        DEF INTEGER NOT NULL,
-        SPA INTEGER NOT NULL, 
-        SPD INTEGER NOT NULL,
-        SPE INTEGER NOT NULL,
-        SPRITE CHAR(100) NOT NULL,
-        PRIMARY KEY(NAME)
-    );
-    
-    INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, ABILITY2, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-        VALUES ("OMASTAR", 3, "WATER", "SWIFT SWIM", "SHELL ARMOR", "WEAK ARMOR", 3, 2, 6, 5, 3, 1, "https://play.pokemonshowdown.com/sprites/dex/omastar.png");
-    
-    INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, ABILITY2, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-        VALUES ("KABUTOPS", 4, "WATER", "SWIFT SWIM", "BATTLE ARMOR", "WEAK ARMOR", 1, 6, 5, 2, 3, 4, "https://play.pokemonshowdown.com/sprites/dex/kabutops.png");
-    
-    INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, ABILITY2, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-        VALUES ("AERODACTYL", 4, "FLYING", "ROCK HEAD", "PRESSURE", "UNNERVE", 4, 5, 1, 2, 3, 6, "https://play.pokemonshowdown.com/sprites/dex/aerodactyl.png");
-    
-    INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-        VALUES ("CRADILY", 3, "GRASS", "SUCTION CUPS", "STORM DRAIN", 4, 2, 5, 2, 6, 1, "https://play.pokemonshowdown.com/sprites/dex/cradily.png");
-    
-    INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-        VALUES ("ARMALDO", 4, "BUG", "BATTLE ARMOR", "SWIFT SWIM", 3, 6, 5, 2, 4, 1, "https://play.pokemonshowdown.com/sprites/dex/armaldo.png");
-    
-    INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-        VALUES ("RAMPARDOS", 5, "ROCK", "MOLD BREAKER", "SHEER FORCE", 5, 6, 3, 4, 1, 2, "https://play.pokemonshowdown.com/sprites/dex/rampardos.png");
-    
-    INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-        VALUES ("BASTIODON", 6, "STEEL", "STURDY", "SOUNDPROOF", 4, 3, 6, 2, 5, 1, "https://play.pokemonshowdown.com/sprites/dex/bastiodon.png");
-    
-    INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, ABILITY2, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-        VALUES ("CARRACOSTA", 5, "WATER", "SOLID ROCK", "STURDY", "SWIFT SWIM", 3, 6, 5, 4, 2, 1, "https://play.pokemonshowdown.com/sprites/dex/carracosta.png");
-    
-    INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-        VALUES ("ARCHEOPS", 5, "FLYING", "DEFEATIST", "DEFEATIST", 3, 6, 1, 5, 1, 4, "https://play.pokemonshowdown.com/sprites/dex/archeops.png");
-    
-    INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-        VALUES ("TYRANTRUM", 4, "DRAGON", "STRONG JAW", "ROCK HEAD", 4, 6, 5, 2, 1, 3, "https://play.pokemonshowdown.com/sprites/dex/tyrantrum.png");
-    
-    INSERT INTO FOSSIL_PART (NAME, HEAD_N, TYPE, ABILITY1, HABILITY, HP, ATK, DEF, SPA, SPD, SPE, SPRITE)
-        VALUES ("AURORUS", 4, "ICE", "REFRIGERATE", "SNOW WARNING", 6, 3, 2, 5, 4, 1, "https://play.pokemonshowdown.com/sprites/dex/aurorus.png");";
-    if ($conn->query($sql) === TRUE) {
-        echo "Database created successfully";
-    } else {
-        echo "Error creating database: " . $conn->error;
-    }
+	}	
 
 	$sql = "select * from Fossil_Part F";
 	$res = sql_con_query($con, 'fossil_mashup', $sql);
@@ -132,7 +57,6 @@
 			<option value=5> Stat Coefficient of 5</option>
 			<option value=10> Stat Coefficient of 10 </option></td>
 			<td><input type="submit" value="Generate" /></td>
-			<td><input type="submit" value="Randomize" /></td>
 			<td><input type="reset" value="Cancel" /></td>
 		</tr>
 	</table>
@@ -177,7 +101,7 @@
 				}
 				$primary = $head[3];
 				$hidden = ($tail[5] != $primary) ? ($tail[5]) : ($tail[3]);
-				$secondary = ($head[3] == $head[5]) ? ('---') : (($tail[3] != NULL && $tail[3] != $hidden) ? ($tail[3]) : (($head[4] != NULL && $head[4] != $primary && $head[4] != $hidden) ? ($head[4]) : ('---')) );
+				$secondary = ($head[3] == $head[5]) ? ('---') : (($tail[3] != $primary && $tail[3] != $hidden) ? ($tail[3]) : (($head[4] != NULL && $head[4] != $primary && $head[4] != $hidden) ? ($head[4]) : ('---')) );
 			?>
 			<p><?php echo $primary; ?></p>
 			<p><?php echo $secondary; ?></p>
@@ -223,5 +147,5 @@
 			?></td>
 			</tr></table></td>
 		</tr></table>
-	<?php } ?></font>
+	<?php } ?></font></p>
 </body>
