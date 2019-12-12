@@ -80,9 +80,13 @@
 	</table>
 	</form>
 	<p id="p1">Hello World!</p>
-
 	<script>
-		var head, tail, hname, tname, h, t;
+			</script></td>
+			</tr></table></td>
+		</tr></table>
+	</font></p><script>
+	if(anyset()){
+		var head, tail, hname, tname, h, t, name;
 		if(isset(validateForm("Randomize")){
 			h = rand(0, row.length - 1);
 			t = rand(0, row.length - 1);
@@ -97,12 +101,12 @@
 				if(f[0] == tname) tail = f;
 			}
 		}
-		var name;
-		name  = tail[0].substr(0, $tail[1]) + head[0].substr(head[1], head[0].length - 1) ;
+
+		name  = tail[0].substr(0, $tail[1]) + head[0].substr(head[1], head[0].length - 1);
 		string1 += "<table border='2'><tr> <td><table border='1'><tr><td width='60'> <p>Name:</p> <p>Head:</p> <p>Tail:</p> <p>Type:</p> <p>Ability1:</p> <p>Ability2:</p> <p>HAbility:</p> </td><td width='100'>";
 		string1 += "<p>" + name.toLowerCase() + "</p> <p>" + head[0].toLowerCase() + "</p> <p>" + tail[0].toLowerCase() + "</p> <p><input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + head[2].toLowerCase() + ".png'>";
 		if(head[2].localeCompare(tail[2]) != 0) { 
-			string1 += "<input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + tail[2].toLowerCase() + ".png'>";
+			string1 += '<input type="image" src="https://play.pokemonshowdown.com/sprites/types/' + tail[2].toLowerCase() + '.png">';
 		}
 		string1 += "</p>";
 		var primary, hidden, secondary;
@@ -142,9 +146,7 @@
 				string1 += '<tr><td width=120>' + $stat + '</td></tr>'; 
 			string1 += '<tr><td width=110>' + $bst + '</td></tr>'; 
 			string1 += '</table></td><td><input type="image" src="https://play.pokemonshowdown.com/sprites/dex/' + strtolower($tail[0]) + '.png">';
-		document.getElementById("p2").innerHTML = string1;
-			</script></td>
-			</tr></table></td>
-		</tr></table>
-	</font></p>
+		document.getElementById("p2").innerHTML = string1; 
+	}
+	</script>
 </body>
