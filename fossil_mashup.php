@@ -136,6 +136,14 @@
 					$val[$most[0]] += 5;
 					$bst += 5;
 				} 
+				if($head[12] > $tail[12]){
+					$tmp = $val[1];
+					$val[1] = $val[2];
+					$val[2] = $tmp;
+					$tmp = $val[3];
+					$val[3] = $val[4];
+					$val[4] = $tmp;
+				}
 				foreach($val as $stat)
 					echo '<tr><td width=120>' . $stat . '</td></tr>'; 
 				echo '<tr><td width=110>' . $bst . '</td></tr>'; 
