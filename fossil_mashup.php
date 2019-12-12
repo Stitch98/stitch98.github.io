@@ -1,16 +1,8 @@
 <head>
     <title>Fossil Mashup</title>
 </head>
-<body>
-	<p style={background-color:#020202}><?php 
-
-	function sql_con_query(&$con, $db, $sql){
-        $con = mysqli_connect('stitch98.github.io','stitch98','',$db); 
-        if (mysqli_connect_errno()) 
-            die ('Failed to connect to MySQL: ' . mysqli_connect_error());
-        return mysqli_query($con, $sql);
-    }
-    
+<body style={background-color:#020202}>
+	<?php 
     function anyset($values){
         $flag = false;
         foreach ($values as $val) {
@@ -29,10 +21,17 @@
         return $flag;
 	}	
 
-	$sql = "select * from Fossil_Part F";
-	$res = sql_con_query($con, 'fossil_mashup', $sql);
-	if($res != false and mysqli_num_rows($res) > 0)
-		{ for($i = 0; $row[$i] = mysqli_fetch_row($res); $i++); }
+	$row[0] = array("OMASTAR", 3, "WATER", "SWIFT SWIM", "SHELL ARMOR", "WEAK ARMOR", 3, 2, 6, 5, 3, 1, 60);
+	$row[1] = array("KABUTOPS", 4, "WATER", "SWIFT SWIM", "BATTLE ARMOR", "WEAK ARMOR", 1, 6, 5, 2, 3, 4, 115);
+	$row[2] = array("AERODACTYL", 4, "FLYING", "ROCK HEAD", "PRESSURE", "UNNERVE", 4, 5, 1, 2, 3, 6, 105);
+	$row[3] = array("CRADILY", 3, "GRASS", "SUCTION CUPS", NULL, "STORM DRAIN", 4, 2, 5, 2, 6, 1, 81);
+	$row[4] = array("ARMALDO", 4, "BUG", "BATTLE ARMOR", NULL, "SWIFT SWIM", 3, 6, 5, 2, 4, 1, 125);
+	$row[5] = array("RAMPARDOS", 5, "ROCK", "MOLD BREAKER", NULL, "SHEER FORCE", 5, 6, 3, 4, 1, 2, 165);
+	$row[6] = array("BASTIODON", 6, "STEEL", "STURDY", NULL, "SOUNDPROOF", 4, 3, 6, 2, 5, 1, 52);
+	$row[7] = array("CARRACOSTA", 5, "WATER", "SOLID ROCK", "STURDY", "SWIFT SWIM", 3, 6, 5, 4, 2, 1, 108);
+	$row[8] = array("ARCHEOPS", 5, "FLYING", "DEFEATIST", NULL, "DEFEATIST", 3, 6, 1, 5, 1, 4, 140);
+	$row[9] = array("TYRANTRUM", 4, "DRAGON", "STRONG JAW", NULL, "ROCK HEAD", 4, 6, 5, 2, 1, 3, 121);
+	$row[10] = array("AURORUS", 4, "ICE", "REFRIGERATE", NULL, "SNOW WARNING", 6, 3, 2, 5, 4, 1, 77);
 	?>
 
 	<font face=Arial>
@@ -73,12 +72,10 @@
 			if($row[$h] != false) $head = $row[$h];
 			if($row[$t] != false) $head = $row[$t];
 		} else if(areset($_REQUEST, array('fusee1', 'fusee2', 'x'))) {
-			$sql1 = 'select * from Fossil_Part where Name ="' . $_REQUEST['fusee1'] . '"';
-			$res = sql_con_query($con, 'fossil_mashup', $sql1);
-			if($res != false) $head = mysqli_fetch_row($res);
-			$sql2 = 'select * from Fossil_Part F where F.Name ="' . $_REQUEST['fusee2'] . '"';
-			$res = sql_con_query($con, 'fossil_mashup', $sql2);
-			if($res != false) $tail = mysqli_fetch_row($res);
+			foreach($row as $f){
+				if($f[0] == $_REQUEST['fusee1']) $head = $f;
+				if($f[0] == $_REQUEST['fusee2']) $tail = $f;
+			}
 		}
 		$name = substr($tail[0], 0, $tail[1]) . substr($head[0], $head[1]); ?> 
 		<table border=2><tr>
