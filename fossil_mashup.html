@@ -11,9 +11,9 @@
 
 	function validateForm() {
 		if(form_in == ''){
-			form_in = {fusee1: document.forms["myForm"]['fusee1'].value, 
-				   fusee2: document.forms["myForm"]['fusee2'].value,
-				   x: document.forms["myForm"]['x'].value};
+			form_in = {fusee1: 	document.forms["myForm"]['fusee1'], 
+				   	   fusee2: 	document.forms["myForm"]['fusee2'],
+				       x: 		document.forms["myForm"]['x']};
 		}
   		if (form_in['fusee1'] == "" || form_in['fusee2'] == "") {
     		alert("Select 2 fusees.");
