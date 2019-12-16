@@ -3,61 +3,61 @@
 <head>
 	<title>Fossil Mashup</title>
 	<script>
-    //here I declare the fossil characteristics (name, number of letters in the tail part, type, primary ability, secondary ability - if present - and hidden ability, then the stat boost values for each stat, and finally the Attack of the original Pokémon - to determine which one is the offensive among the fusees).
-    var omastar = 		new Array("OMASTAR",	3, "WATER", 	"SWIFT SWIM", 	"SHELL ARMOR", 	"WEAK ARMOR", 	3, 2, 6, 5, 3, 1, 60),
-		kabutops = 		new Array("KABUTOPS", 	4, "WATER", 	"SWIFT SWIM", 	"BATTLE ARMOR", "WEAK ARMOR", 	1, 6, 5, 2, 3, 4, 115),
-		aerodactyl = 	new Array("AERODACTYL", 4, "FLYING", 	"ROCK HEAD", 	"PRESSURE", 	"UNNERVE", 		4, 5, 1, 2, 3, 6, 105),
-		cradily = 		new Array("CRADILY", 	3, "GRASS", 	"SUCTION CUPS", "", 			"STORM DRAIN", 	4, 2, 5, 2, 6, 1, 81),
-		armaldo = 		new Array("ARMALDO", 	4, "BUG", 		"BATTLE ARMOR", "", 			"SWIFT SWIM", 	3, 6, 5, 2, 4, 1, 125),
-		rampardos = 	new Array("RAMPARDOS", 	5, "ROCK", 		"MOLD BREAKER", "", 			"SHEER FORCE", 	5, 6, 3, 4, 1, 2, 165),
-		bastiodon = 	new Array("BASTIODON", 	6, "STEEL", 	"STURDY", 		"", 			"SOUNDPROOF", 	4, 3, 6, 2, 5, 1, 52),
-		carracosta =	new Array("CARRACOSTA", 5, "WATER", 	"SOLID ROCK", 	"STURDY", 		"SWIFT SWIM", 	3, 6, 5, 4, 2, 1, 108),
-		archeops = 		new Array("ARCHEOPS", 	5, "FLYING", 	"DEFEATIST", 	"", 			"DEFEATIST", 	3, 6, 1, 5, 1, 4, 140),
-		tyrantrum = 	new Array("TYRANTRUM", 	4, "DRAGON", 	"STRONG JAW", 	"", 			"ROCK HEAD", 	4, 6, 5, 2, 1, 3, 121),
-		aurorus = 		new Array("AURORUS", 	4, "ICE", 		"REFRIGERATE", 	"", 			"SNOW WARNING", 6, 3, 2, 5, 4, 1, 77),
-		row = new Array(omastar, kabutops, aerodactyl, cradily, armaldo, rampardos, bastiodon, carracosta, archeops, tyrantrum, aurorus); 
-
-	function isset(x){
-        return !(typeof x === "undefined");
-    }
-
-	function validateForm() {
-		var x = document.getElementById("myForm");
-  		if (form_in['fusee1'] == "" || form_in['fusee2'] == "") {
-    		alert("Select 2 fusees.");
-    		return false;
-  		}
-	}
-
-    function getForm(fname) {
-        var x = document.forms["myForm"][fname].value;
-        if (x == "") {
-            alert("Cannot get value for " + fname + "!");
-            return '';
+        function isset(x){
+            return !(typeof x === "undefined");
         }
-        return x;
-    }
 
-    function anyset(){
-        var reqs = ['fusee1', 'fusee2', 'x'];
-        var flag = false;
-        for(n of reqs){
-            if(isset(getForm(n))){
-                flag = true;
+        function validateForm() {
+            var x = document.getElementById("myForm");
+            if (form_in['fusee1'] == "" || form_in['fusee2'] == "") {
+                alert("Select 2 fusees.");
+                return false;
             }
         }
 
-        return flag;
-    }
-
-    function areset(names){
-        var flag = true;
-        for(id of names) {
-            if(!isset(getForm(id)) || getForm(id).length <= 0)
-                flag = false;
+        function getForm(fname) {
+            var x = document.forms["myForm"][fname].value;
+            if (x == "") {
+                alert("Cannot get value for " + fname + "!");
+                return '';
+            }
+            return x;
         }
-        return flag;
-    }   
+
+        function anyset(){
+            var reqs = ['fusee1', 'fusee2', 'x'];
+            var flag = false;
+            for(n of reqs){
+                if(isset(getForm(n))){
+                    flag = true;
+                }
+            }
+
+            return flag;
+        }
+
+        function areset(names){
+            var flag = true;
+            for(id of names) {
+                if(!isset(getForm(id)) || getForm(id).length <= 0)
+                    flag = false;
+            }
+            return flag;
+        }   
+        
+        //here I declare the fossil characteristics (name, number of letters in the tail part, type, primary ability, secondary ability - if present - and hidden ability, then the stat boost values for each stat, and finally the Attack of the original Pokémon - to determine which one is the offensive among the fusees).
+        var omastar = 		new Array("OMASTAR",	3, "WATER", 	"SWIFT SWIM", 	"SHELL ARMOR", 	"WEAK ARMOR", 	3, 2, 6, 5, 3, 1, 60),
+            kabutops = 		new Array("KABUTOPS", 	4, "WATER", 	"SWIFT SWIM", 	"BATTLE ARMOR", "WEAK ARMOR", 	1, 6, 5, 2, 3, 4, 115),
+            aerodactyl = 	new Array("AERODACTYL", 4, "FLYING", 	"ROCK HEAD", 	"PRESSURE", 	"UNNERVE", 		4, 5, 1, 2, 3, 6, 105),
+            cradily = 		new Array("CRADILY", 	3, "GRASS", 	"SUCTION CUPS", "", 			"STORM DRAIN", 	4, 2, 5, 2, 6, 1, 81),
+            armaldo = 		new Array("ARMALDO", 	4, "BUG", 		"BATTLE ARMOR", "", 			"SWIFT SWIM", 	3, 6, 5, 2, 4, 1, 125),
+            rampardos = 	new Array("RAMPARDOS", 	5, "ROCK", 		"MOLD BREAKER", "", 			"SHEER FORCE", 	5, 6, 3, 4, 1, 2, 165),
+            bastiodon = 	new Array("BASTIODON", 	6, "STEEL", 	"STURDY", 		"", 			"SOUNDPROOF", 	4, 3, 6, 2, 5, 1, 52),
+            carracosta =	new Array("CARRACOSTA", 5, "WATER", 	"SOLID ROCK", 	"STURDY", 		"SWIFT SWIM", 	3, 6, 5, 4, 2, 1, 108),
+            archeops = 		new Array("ARCHEOPS", 	5, "FLYING", 	"DEFEATIST", 	"", 			"DEFEATIST", 	3, 6, 1, 5, 1, 4, 140),
+            tyrantrum = 	new Array("TYRANTRUM", 	4, "DRAGON", 	"STRONG JAW", 	"", 			"ROCK HEAD", 	4, 6, 5, 2, 1, 3, 121),
+            aurorus = 		new Array("AURORUS", 	4, "ICE", 		"REFRIGERATE", 	"", 			"SNOW WARNING", 6, 3, 2, 5, 4, 1, 77),
+            row = new Array(omastar, kabutops, aerodactyl, cradily, armaldo, rampardos, bastiodon, carracosta, archeops, tyrantrum, aurorus); 
      </script>
 </head>
 <body>
