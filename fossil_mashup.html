@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Fossil Mashup</title>
-</head>
-<body>
-    <script>
-    function isset(x){
+	<title>Fossil Mashup</title>
+	<script>
+	function isset(x){
         return !(typeof x === "undefined");
     }
 
@@ -46,7 +44,9 @@
                 flag = false;
         }
         return flag;
-    } 
+    } </script>
+</head>
+<body><script>    
 //here i declare the fossil characteristics (name, number of letters in the tail part, type, primary ability, secondary ability - if present - and hidden ability, then the stat boost values for each stat, and finally the Attack of the original Pokémon - to determine which one is the offensive among the fusees).
     var omastar = 		new Array("OMASTAR",	3, "WATER", 	"SWIFT SWIM", 	"SHELL ARMOR", 	"WEAK ARMOR", 	3, 2, 6, 5, 3, 1, 60),
 		kabutops = 		new Array("KABUTOPS", 	4, "WATER", 	"SWIFT SWIM", 	"BATTLE ARMOR", "WEAK ARMOR", 	1, 6, 5, 2, 3, 4, 115),
