@@ -9,7 +9,7 @@
 
         function getForm(fname) {
             var x = document.forms["myForm"][fname].value;
-            if (document.forms["myForm"]["first"].value != "" && x == "") {
+            if (isset(document.forms["myForm"]["first"].value) && x == "") {
                 alert("Cannot get value for " + fname + "!");
                 return '';
             }
