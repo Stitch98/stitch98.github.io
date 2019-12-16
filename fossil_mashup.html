@@ -74,7 +74,7 @@
 
     <font face='Arial'>
     <p><h2>Select the Fusees</h2></p>
-    <form id="myForm" action="/fossil_mashup.html">
+    <form id="myForm" action="/fossil_mashup.html" method='GET'>
     <table>
         <tr>
             <td>Fusees:</td>
@@ -91,11 +91,13 @@
         </tr>
         <tr>
             <td>
-				<select id="x"><option value=5> Stat Coefficient of 5</option>
-				<option value=10> Stat Coefficient of 10 </option></select>
-			</td><td>
-				<input type="button" onclick="submitForm()" value="Submit">
+				<select id="x">
+					<option value=5> Stat Coefficient of 5</option>
+					<option value=10> Stat Coefficient of 10 </option>
+				</select>
 			</td>
+			<td><input type="submit" value="Generate" /></td>
+			<td><input type="reset" value="Cancel" /></td>
         </tr>
     </table>
     </form><script>
