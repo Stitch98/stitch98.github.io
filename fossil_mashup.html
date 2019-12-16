@@ -74,12 +74,12 @@
     <table>
         <tr>
             <td>Fusees:</td>
-            <td><select id="fusee1">
+            <td><select name="fusee1">
             <option value=""> -- Head -- </option>
             <script>for(var i = 0; i < row.length; i++){ 
 				document.write("<option value='" + row[i][0] + "'>" + row[i][0] + "</option>"); 
 			} </script></select>
-            </td><td><select id="fusee2">
+            </td><td><select name="fusee2">
             <option value=""> -- Tail -- </option>
             <script>for(var i = 0; i < row.length; i++){ 
 				document.write("<option value='" + row[i][0] + "'>" + row[i][0] + "</option>"); 
@@ -87,7 +87,7 @@
         </tr>
         <tr>
             <td>
-				<select id="x">
+				<select name="x">
 					<option value=5> Stat Coefficient of 5</option>
 					<option value=10> Stat Coefficient of 10 </option>
 				</select>
