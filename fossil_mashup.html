@@ -5,6 +5,10 @@
 	<script>
 	var form_in = '';
 
+	function  submitForm() {
+		document.getElementById("myForm").submit();
+	}
+
 	function isset(x){
         return !(typeof x === "undefined");
     }
@@ -74,27 +78,26 @@
     <table>
         <tr>
             <td>Fusees:</td>
-            <td><select name="fusee1">
+            <td><select id="fusee1">
             <option value=""> -- Head -- </option>
             <script>for(var i = 0; i < row.length; i++){ 
 				document.write("<option value='" + row[i][0] + "'>" + row[i][0] + "</option>"); 
 			} </script></select>
-            </td><td><select name="fusee2">
+            </td><td><select id="fusee2">
             <option value=""> -- Tail -- </option>
             <script>for(var i = 0; i < row.length; i++){ 
 				document.write("<option value='" + row[i][0] + "'>" + row[i][0] + "</option>"); 
 			} </script></select></td>
         </tr>
         <tr>
-            <td><select name="x">
+            <td><select id="x">
             <option value=5> Stat Coefficient of 5</option>
             <option value=10> Stat Coefficient of 10 </option></td>
-            <td><input type="submit" value="Generate" /></td>
-            <td><input type="reset" value="Cancel" /></td>
+			<input type="button" onclick="submitForm()" value="Submit">
+			
         </tr>
     </table>
     </form><script>
-	document.write("fusee1 = " + getForm("fusee1"));
 // Up there, where 'id = "pn"' appears, should be written the options for heads and tails that are filled down here.
     if(anyset()){
         var head, tail, hname, tname, h, t, name;
