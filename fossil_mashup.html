@@ -8,12 +8,7 @@
         }
 
         function getForm(fname) {
-            var x = document.forms["myForm"][fname].value;
-            if (isset(document.forms["myForm"]["first"].value) && x == "") {
-                alert("Cannot get value for " + fname + "!");
-                return '';
-            }
-            return x;
+            return document.forms["myForm"][fname].value;
         }
 
         function anyset(){
