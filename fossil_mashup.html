@@ -10,10 +10,11 @@
     }
 
 	function validateForm() {
+		var x = document.getElementById("myForm");
 		if(form_in == ''){
-			form_in = {fusee1: 	document.forms["myForm"]['fusee1'], 
-				   	   fusee2: 	document.forms["myForm"]['fusee2'],
-				       x: 		document.forms["myForm"]['x']};
+			form_in = {x: 		x.elements[0].value,
+					   fusee1: 	x.elements[1].value, 
+				   	   fusee2: 	x.elements[2].value};
 		}
   		if (form_in['fusee1'] == "" || form_in['fusee2'] == "") {
     		alert("Select 2 fusees.");
@@ -69,7 +70,7 @@
 
     <font face='Arial'>
     <p><h2>Select the Fusees</h2></p>
-    <form name="myForm" action="/fossil_mashup.html" method="GET">
+    <form id="myForm" action="/fossil_mashup.html">
     <table>
         <tr>
             <td>Fusees:</td>
@@ -104,7 +105,7 @@
             head = row[h];
             tail = row[t];
         }*/
-        if(areset(new Array('fusee1', 'fusee2', 'x'))) {
+        if(areset(['fusee1', 'fusee2', 'x'])) {
             hname = getForm('fusee1');
             tname = getForm('fusee2');
             for(f of row){
