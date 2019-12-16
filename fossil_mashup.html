@@ -32,7 +32,7 @@
     }
 
     function anyset(){
-        var reqs = new Array('fusee1', 'fusee2', 'x');
+        var reqs = ['fusee1', 'fusee2', 'x'];
         var flag = false;
         for(n of reqs){
             if(isset(getForm(n))){
@@ -94,10 +94,10 @@
         </tr>
     </table>
     </form><script>
+	document.write("fusee1 = " + getForm("fusee1"));
 // Up there, where 'id = "pn"' appears, should be written the options for heads and tails that are filled down here.
     if(anyset()){
         var head, tail, hname, tname, h, t, name;
-		document.write("fusee1 = " + getForm("fusee1"));
         /* if(isset(getForm("Randomize")){
             h = rand(0, row.length - 1);
             t = rand(0, row.length - 1);
