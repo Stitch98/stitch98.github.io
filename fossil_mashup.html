@@ -83,7 +83,7 @@
 				<option value=5> Stat Coefficient of 5</option>
 				<option value=10> Stat Coefficient of 10 </option>
             </select></td>
-			<td><button onclick="showTable()">Generate!</button></td>
+			<td><input type="submit" value="Generate" /></td>
 			<td><input type="reset" value="Cancel" /></td>
         </tr>
     </table>
@@ -123,7 +123,7 @@
 
 <script>
 // Up there, where 'id = "pn"' appears, should be written the options for heads and tails that are filled down here.
-function showTable() {
+if(anyset()) {
     var head, tail, hname, tname, h, t, name;
     if(areset(['fusee1', 'fusee2', 'x'])) {
         hname = getForm('fusee1');
