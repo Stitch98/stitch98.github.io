@@ -93,19 +93,42 @@
 			<td><input type="reset" value="Cancel" /></td>
         </tr>
     </table>
-    </form><script>
-// Up there, where 'id = "pn"' appears, should be written the options for heads and tails that are filled down here.
+    </form>
+    <table border='2'>
+        <tr>
+            <td><table border='1'>
+                <tr>
+                    <td width='60'> 
+                        <p>Name:</p>
+                        <p>Head:</p>
+                        <p>Tail:</p>
+                        <p>Type:</p>
+                        <p>Ability1:</p>
+                        <p>Ability2:</p>
+                        <p>HAbility:</p> 
+                    </td>
+                    <td width='100'><p id="traits_fusion">Caratteristiche della fusione</p></td>
+                    <td><p id="sprite_fusee_1">Sprite Fusee 1</p></td>
+                </tr><tr>
+                    <td><table border='1'>
+                      <tr><td width=60>HP</td></tr>
+                      <tr><td width=60>ATK</td></tr>
+                      <tr><td width=60>DEF</td></tr>
+                      <tr><td width=60>SPA</td></tr>
+                      <tr><td width=60>SPD</td></tr>
+                      <tr><td width=60>SPE</td></tr>
+                      <tr><td width=60>BST</td></tr>
+                    </table></td>
+                    <td><p id="stat_fusion">Fusion Stats</p></td>
+                    <td><p id="sprite_fusee_2">Sprite Fusee 2</p></td>
+                </tr></table>
+            </td>
+        </tr>
+    </table>
+    <script>
+    // Up there, where 'id = "pn"' appears, should be written the options for heads and tails that are filled down here.
     function showTable() {
-        if(anyset()){
         var head, tail, hname, tname, h, t, name;
-        /* if(isset(getForm("Randomize")){
-            h = rand(0, row.length - 1);
-            t = rand(0, row.length - 1);
-            if(h == t)
-                h = ++h % row.length;
-            head = row[h];
-            tail = row[t];
-        }*/
         if(areset(['fusee1', 'fusee2', 'x'])) {
             hname = getForm('fusee1');
             tname = getForm('fusee2');
@@ -114,15 +137,16 @@
                 if(f[0] == tname) tail = f;
             }
         }
-// here the name is determined (you can see how the second entry is used), and then I try to fill the table.
+        // here the name is determined (you can see how the second entry is used), and then I try to fill the table.
+        var buffer = "";
         name  = tail[0].substr(0, $tail[1]) + head[0].substr(head[1], head[0].length - 1);
-		document.write("<table border='2'><tr> <td><table border='1'><tr><td width='60'> <p>Name:</p> <p>Head:</p> <p>Tail:</p> <p>Type:</p> <p>Ability1:</p> <p>Ability2:</p> <p>HAbility:</p> </td><td width='100'>");
-		document.write("<p>" + name.toLowerCase() + "</p> <p>" + head[0].toLowerCase() + "</p> <p>" + tail[0].toLowerCase() + "</p> <p><input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + head[2].toLowerCase() + ".png'>");
+		buffer += "<p>" + name.toLowerCase() + "</p> <p>" + head[0].toLowerCase() + "</p> <p>" + tail[0].toLowerCase() + "</p>";
+        buffer += "<p><input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + head[2].toLowerCase() + ".png'>";
         if(head[2].localeCompare(tail[2]) != 0) {
-			document.write('<input type="image" src="https://play.pokemonshowdown.com/sprites/types/' + tail[2].toLowerCase() + '.png">');
+			buffer += "<input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + tail[2].toLowerCase() + ".png'>";
         }
-		document.write("</p>");
-// abilities are determined now, you can see the if-then-else mechanism behind secondary ability determination.
+        buffer += "</p>";
+        // abilities are determined now, you can see the if-then-else mechanism behind secondary ability determination.
         var primary, hidden, secondary;
         primary = head[3];
         hidden = (tail[5] != primary) ? (tail[5]) : (tail[3]);
@@ -131,44 +155,46 @@
         else if(tail[4] != "" && tail[4] != primary && tail[4] != hidden) secondary = tail[4];
         else if(tail[3] != primary && tail[3] != hidden) secondary = tail[3];
         else secondary = '---';
-		document.write("<p>" + primary + "</p> <p>" + secondary + "</p> <p>" + hidden + "</p> </td><td><input type='image' src='https://play.pokemonshowdown.com/sprites/dex/" + head[0].toLowerCase() + ".png'> </td></tr><tr><td><table border=1><tr><td width=60>HP</td></tr><tr><td width=60>ATK</td></tr><tr><td width=60>DEF</td></tr><tr><td width=60>SPA</td></tr><tr><td width=60>SPD</td></tr><tr><td width=60>SPE</td></tr><tr><td width=60>BST</td></tr></table></td><td><table border=1>");
-// here the stats are determined: first is determined the stat multiplier and the amount to be added to each stat, then each stat with the formula described above, then the correction to fit the 505 BST is applied; after that the stats are inverted in the case head's Attack is higher than tail's.
-// then each satt should be printed inside the string string1 and then shown in the website, but it doesn't happen.
-            var val, bst, most, x, y;
-            bst = 0;
-            most = array(-1, 255);
-            x = getForm('x');
-            y = (510 - 42 * $x) / 6;
-            for(var i = 0; $i < 6; $i++){
-                val[i] = ((head[6 + i] + tail[6 + i]) * x + y);
-                bst += val[i];
-                if(val[i] < most[1]){
-                    most[0] = i;
-                    most[1] = val[i];
-                }
+		buffer += "<p>" + primary + "</p> <p>" + secondary + "</p> <p>" + hidden + "</p>";
+		document.getElementById("traits_fusion").innerHTML = buffer;
+        document.getElementById("sprite_fusee_1").innerHTML = "<input type='image' src='https://play.pokemonshowdown.com/sprites/dex/" + head[0].toLowerCase() + ".png'>";
+        // here the stats are determined: first is determined the stat multiplier and the amount to be added to each stat, then each stat with the formula described above, then the correction to fit the 505 BST is applied; after that the stats are inverted in the case head's Attack is higher than tail's.
+        // then each satt should be printed inside the string string1 and then shown in the website, but it doesn't happen.
+        var val, bst, most, x, y;
+        buffer = "<table>";
+        bst = 0;
+        most = array(-1, 255);
+        x = getForm('x');
+        y = (510 - 42 * $x) / 6;
+        for(var i = 0; $i < 6; $i++){
+            val[i] = ((head[6 + i] + tail[6 + i]) * x + y);
+            bst += val[i];
+            if(val[i] < most[1]){
+                most[0] = i;
+                most[1] = val[i];
             }
-            if(bst == 510){
-                val[most[0]] -= 5;
-                bst -= 5;
-            } else if(bst == 500){
-                val[most[0]] += 5;
-                bst += 5;
-            }
-            if(head[12] > tail[12]){
-                tmp = val[1];
-                val[1] = val[2];
-                val[2] = tmp;
-                tmp = val[3];
-                val[3] = val[4];
-                val[4] = tmp;
-            }
-            for(stat of val)
-				document.write('<tr><td width=120>' + $stat + '</td></tr>');  
-			document.write('<tr><td width=110>' + $bst + '</td></tr>');   
-			document.write('</table></td><td><input type="image" src="https://play.pokemonshowdown.com/sprites/dex/' + strtolower($tail[0]) + '.png">');
-    	}
-    	document.write("</td></tr></table></td></tr></table></font></p>");
+        }
+        if(bst == 510){
+            val[most[0]] -= 5;
+            bst -= 5;
+        } else if(bst == 500){
+            val[most[0]] += 5;
+            bst += 5;
+        }
+        if(head[12] > tail[12]){
+            tmp = val[1];
+            val[1] = val[2];
+            val[2] = tmp;
+            tmp = val[3];
+            val[3] = val[4];
+            val[4] = tmp;
+        }
+        for(stat of val)
+            buffer += '<tr><td width=120>' + $stat + '</td></tr>';  
+        buffer += '<tr><td width=110>' + $bst + '</td></tr>';  
+        document.getElementById("stat_fusion").innerHTML = buffer + '</table>';
+        document.getElementById("sprite_fusee_2").innerHTML = '<input type="image" src="https://play.pokemonshowdown.com/sprites/dex/' + $tail[0].toLowerCase() + '.png">';
     }
-    </script>
+    </script></font>
 </body>
 </html>
