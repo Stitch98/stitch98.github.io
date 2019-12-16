@@ -117,7 +117,7 @@ if(anyset()) {
     }
     // here the name is determined (you can see how the second entry is used), and then I try to fill the table.
     var buffer = "";
-    name  = tail[0].substr(0, $tail[1]) + head[0].substr(head[1], head[0].length - 1);
+    name  = tail[0].substr(0, tail[1]) + head[0].substr(head[1], head[0].length - 1);
     buffer += "<p>" + name.toLowerCase() + "</p> <p>" + head[0].toLowerCase() + "</p> <p>" + tail[0].toLowerCase() + "</p>";
     buffer += "<p><input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + head[2].toLowerCase() + ".png'>";
     if(head[2].localeCompare(tail[2]) != 0) {
