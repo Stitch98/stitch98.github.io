@@ -69,7 +69,7 @@
 
     <font face='Arial'>
     <p><h2>Select the Fusees</h2></p>
-    <form id="myForm" onsubmit: action="/fossil_mashup.html">
+    <form id="myForm" action="/fossil_mashup.html">
     <table>
         <tr>
             <td>Fusees:</td>
@@ -88,14 +88,15 @@
             <td><select name="x">
 				<option value=5> Stat Coefficient of 5</option>
 				<option value=10> Stat Coefficient of 10 </option>
-			</select></td>
-			<td><input type="submit" value="Generate" /></td>
+            </select></td>
+			<td><button onclick="showTable()">Generate!</button></td>
 			<td><input type="reset" value="Cancel" /></td>
         </tr>
     </table>
     </form><script>
 // Up there, where 'id = "pn"' appears, should be written the options for heads and tails that are filled down here.
-    if(anyset()){
+    function showTable() {
+        if(anyset()){
         var head, tail, hname, tname, h, t, name;
         /* if(isset(getForm("Randomize")){
             h = rand(0, row.length - 1);
@@ -167,6 +168,7 @@
 			document.write('</table></td><td><input type="image" src="https://play.pokemonshowdown.com/sprites/dex/' + strtolower($tail[0]) + '.png">');
     	}
     	document.write("</td></tr></table></td></tr></table></font></p>");
+    }
     </script>
 </body>
 </html>
