@@ -16,7 +16,7 @@
             var reqs = ['fusee1', 'fusee2', 'x'];
             var flag = false;
             for(n of reqs){
-                if(isset(getForm(n))){
+                if(isset(document.forms["myForm"][n].value)){
                     flag = true;
                 }
             }
