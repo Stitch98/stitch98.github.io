@@ -7,14 +7,6 @@
             return !(typeof x === "undefined");
         }
 
-        function validateForm() {
-            var x = document.getElementById("myForm");
-            if (form_in['fusee1'] == "" || form_in['fusee2'] == "") {
-                alert("Select 2 fusees.");
-                return false;
-            }
-        }
-
         function getForm(fname) {
             var x = document.forms["myForm"][fname].value;
             if (x == "") {
