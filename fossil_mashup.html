@@ -124,7 +124,7 @@
         else if(tail[4] != "" && tail[4] != primary && tail[4] != hidden) secondary = tail[4];
         else if(tail[3] != primary && tail[3] != hidden) secondary = tail[3];
         else secondary = '---';
-		document.write("<p>" + primary + "</p> <p>" + secondary + "</p> <p>" + hidden + "</p> </td><td><input type='image' src='https://play.pokemonshowdown.com/sprites/dex/" + strtolower(head[0]) + ".png'> </td></tr><tr><td><table border=1><tr><td width=60>HP</td></tr><tr><td width=60>ATK</td></tr><tr><td width=60>DEF</td></tr><tr><td width=60>SPA</td></tr><tr><td width=60>SPD</td></tr><tr><td width=60>SPE</td></tr><tr><td width=60>BST</td></tr></table></td><td><table border=1>";
+		document.write("<p>" + primary + "</p> <p>" + secondary + "</p> <p>" + hidden + "</p> </td><td><input type='image' src='https://play.pokemonshowdown.com/sprites/dex/" + head[0].toLowerCase() + ".png'> </td></tr><tr><td><table border=1><tr><td width=60>HP</td></tr><tr><td width=60>ATK</td></tr><tr><td width=60>DEF</td></tr><tr><td width=60>SPA</td></tr><tr><td width=60>SPD</td></tr><tr><td width=60>SPE</td></tr><tr><td width=60>BST</td></tr></table></td><td><table border=1>");
 // here the stats are determined: first is determined the stat multiplier and the amount to be added to each stat, then each stat with the formula described above, then the correction to fit the 505 BST is applied; after that the stats are inverted in the case head's Attack is higher than tail's.
 // then each satt should be printed inside the string string1 and then shown in the website, but it doesn't happen.
             var val, bst, most, x, y;
