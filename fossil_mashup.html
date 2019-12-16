@@ -22,16 +22,7 @@
             }
 
             return flag;
-        }
-
-        function areset(names){
-            var flag = true;
-            for(id of names) {
-                if(!isset(getForm(id)) || getForm(id).length <= 0)
-                    flag = false;
-            }
-            return flag;
-        }   
+        } 
         
         //here I declare the fossil characteristics (name, number of letters in the tail part, type, primary ability, secondary ability - if present - and hidden ability, then the stat boost values for each stat, and finally the Attack of the original Pokémon - to determine which one is the offensive among the fusees).
         var omastar = 		new Array("OMASTAR",	3, "WATER", 	"SWIFT SWIM", 	"SHELL ARMOR", 	"WEAK ARMOR", 	3, 2, 6, 5, 3, 1, 60),
@@ -115,9 +106,9 @@
 if(anyset()) {
     var head, tail, hname, tname, h, t, name, val, bst, most, x, y;
 
-    x = getForm('x');
-    hname = getForm('fusee1');
-    tname = getForm('fusee2');
+    x = getForm("x");
+    hname = getForm("fusee1");
+    tname = getForm("fusee2");
     if(isset(hname) && isset(tname)) {
         for(f of row){
             if(f[0] == hname) head = f;
