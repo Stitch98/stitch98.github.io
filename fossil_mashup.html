@@ -56,7 +56,7 @@
             </td><td><select name="fusee2">
             <option value=""> -- Tail -- </option>
             <script>for(var i = 0; i < row.length; i++){ 
-				document.write("<option value='" + row[i][0] + "'>" + row[i][0] + "</option>"); 
+				document.write("<option value=" + i + ">" + row[i][0] + "</option>"); 
 			} </script></select></td>
         </tr>
         <tr>
@@ -102,16 +102,14 @@
     </table></font><script>
 // Up there, where 'id = ' appears, should be written the characteristics of the fusions, that are filled down here.
 if(anyset()) {
-    var head, tail, hname, tname, h, t, name, val, bst, most, x, y;
+    var head, tail, h, t, name, val, bst, most, x, y;
 
     x = getForm("x");
-    hname = getForm("fusee1");
-    tname = getForm("fusee2");
+    h = getForm("fusee1");
+    t = getForm("fusee2");
     if(isset(hname) && isset(tname)) {
-        for(f of row){
-            if(f[0] == hname) head = f;
-            if(f[0] == tname) tail = f;
-        }
+        head = row[h];
+        tail = row[t];
     }
 
     // here the name is determined (you can see how the second entry is used), and then I try to fill the table.
