@@ -9,7 +9,16 @@
         return !(typeof x === "undefined");
     }
 
-    function validateForm(fname) {
+	function validateForm() {
+  		var x = document.forms["myForm"]['fusee1'].value;
+  		var y = document.forms["myForm"]['fusee2'].value;
+  		if (x == "" || y == "") {
+    	alert("Name must be filled out");
+    	return false;
+  	}
+}
+
+    function getForm(fname) {
         var x = document.forms["myForm"][fname].value;
         if (x == "") {
             alert("Name must be filled out");
@@ -22,7 +31,7 @@
         var reqs = new Array('fusee1', 'fusee2', 'x');
         var flag = false;
         for(n of reqs){
-            if(isset(validateForm(n))){
+            if(isset(getForm(n))){
                 flag = true;
             }
         }
@@ -33,7 +42,7 @@
     function areset(names){
         var flag = true;
         for(id of names) {
-            if(!isset(validateForm(id)) || strlen(validateForm(id)) <= 0)
+            if(!isset(getForm(id)) || strlen(getForm(id)) <= 0)
                 flag = false;
         }
         return flag;
@@ -42,20 +51,20 @@
     var omastar = 		new Array("OMASTAR",	3, "WATER", 	"SWIFT SWIM", 	"SHELL ARMOR", 	"WEAK ARMOR", 	3, 2, 6, 5, 3, 1, 60),
 		kabutops = 		new Array("KABUTOPS", 	4, "WATER", 	"SWIFT SWIM", 	"BATTLE ARMOR", "WEAK ARMOR", 	1, 6, 5, 2, 3, 4, 115),
 		aerodactyl = 	new Array("AERODACTYL", 4, "FLYING", 	"ROCK HEAD", 	"PRESSURE", 	"UNNERVE", 		4, 5, 1, 2, 3, 6, 105),
-		cradily = 		new Array("CRADILY", 	3, "GRASS", 	"SUCTION CUPS", null, 			"STORM DRAIN", 	4, 2, 5, 2, 6, 1, 81),
-		armaldo = 		new Array("ARMALDO", 	4, "BUG", 		"BATTLE ARMOR", null, 			"SWIFT SWIM", 	3, 6, 5, 2, 4, 1, 125),
-		rampardos = 	new Array("RAMPARDOS", 	5, "ROCK", 		"MOLD BREAKER", null, 			"SHEER FORCE", 	5, 6, 3, 4, 1, 2, 165),
-		bastiodon = 	new Array("BASTIODON", 	6, "STEEL", 	"STURDY", 		null, 			"SOUNDPROOF", 	4, 3, 6, 2, 5, 1, 52),
+		cradily = 		new Array("CRADILY", 	3, "GRASS", 	"SUCTION CUPS", "", 			"STORM DRAIN", 	4, 2, 5, 2, 6, 1, 81),
+		armaldo = 		new Array("ARMALDO", 	4, "BUG", 		"BATTLE ARMOR", "", 			"SWIFT SWIM", 	3, 6, 5, 2, 4, 1, 125),
+		rampardos = 	new Array("RAMPARDOS", 	5, "ROCK", 		"MOLD BREAKER", "", 			"SHEER FORCE", 	5, 6, 3, 4, 1, 2, 165),
+		bastiodon = 	new Array("BASTIODON", 	6, "STEEL", 	"STURDY", 		"", 			"SOUNDPROOF", 	4, 3, 6, 2, 5, 1, 52),
 		carracosta =	new Array("CARRACOSTA", 5, "WATER", 	"SOLID ROCK", 	"STURDY", 		"SWIFT SWIM", 	3, 6, 5, 4, 2, 1, 108),
-		archeops = 		new Array("ARCHEOPS", 	5, "FLYING", 	"DEFEATIST", 	null, 			"DEFEATIST", 	3, 6, 1, 5, 1, 4, 140),
-		tyrantrum = 	new Array("TYRANTRUM", 	4, "DRAGON", 	"STRONG JAW", 	null, 			"ROCK HEAD", 	4, 6, 5, 2, 1, 3, 121),
-		aurorus = 		new Array("AURORUS", 	4, "ICE", 		"REFRIGERATE", 	null, 			"SNOW WARNING", 6, 3, 2, 5, 4, 1, 77),
+		archeops = 		new Array("ARCHEOPS", 	5, "FLYING", 	"DEFEATIST", 	"", 			"DEFEATIST", 	3, 6, 1, 5, 1, 4, 140),
+		tyrantrum = 	new Array("TYRANTRUM", 	4, "DRAGON", 	"STRONG JAW", 	"", 			"ROCK HEAD", 	4, 6, 5, 2, 1, 3, 121),
+		aurorus = 		new Array("AURORUS", 	4, "ICE", 		"REFRIGERATE", 	"", 			"SNOW WARNING", 6, 3, 2, 5, 4, 1, 77),
 		row = new Array(omastar, kabutops, aerodactyl, cradily, armaldo, rampardos, bastiodon, carracosta, archeops, tyrantrum, aurorus);
     </script>
 
     <font face='Arial'>
     <p><h2>Select the Fusees</h2></p>
-    <form name="myForm" action="fossil_mashup.html" onsubmit="return anyset();" method="post">
+    <form name="myForm" action="/fossil_mashup.html" onsubmit="return getForm('x')" method="post">
     <table>
         <tr>
             <td>Fusees:</td>
@@ -82,7 +91,7 @@
 // Up there, where 'id = "pn"' appears, should be written the options for heads and tails that are filled down here.
     if(anyset()){
         var head, tail, hname, tname, h, t, name;
-        /* if(isset(validateForm("Randomize")){
+        /* if(isset(getForm("Randomize")){
             h = rand(0, row.length - 1);
             t = rand(0, row.length - 1);
             if(h == t)
@@ -91,8 +100,8 @@
             tail = row[t];
         }*/
         if(areset(new Array('fusee1', 'fusee2', 'x'))) {
-            hname = validateForm('fusee1');
-            tname = validateForm('fusee2');
+            hname = getForm('fusee1');
+            tname = getForm('fusee2');
             for(f of row){
                 if(f[0] == hname) head = f;
                 if(f[0] == tname) tail = f;
@@ -111,8 +120,8 @@
         primary = head[3];
         hidden = (tail[5] != primary) ? (tail[5]) : (tail[3]);
         if(head[3] == head[5] || tail[3] == tail[5]) secondary = '---';
-        else if(head[4] != null && head[4] != primary && head[4] != hidden) secondary = head[4];
-        else if(tail[4] != null && tail[4] != primary && tail[4] != hidden) secondary = tail[4];
+        else if(head[4] != "" && head[4] != primary && head[4] != hidden) secondary = head[4];
+        else if(tail[4] != "" && tail[4] != primary && tail[4] != hidden) secondary = tail[4];
         else if(tail[3] != primary && tail[3] != hidden) secondary = tail[3];
         else secondary = '---';
 		document.write("<p>" + primary + "</p> <p>" + secondary + "</p> <p>" + hidden + "</p> </td><td><input type='image' src='https://play.pokemonshowdown.com/sprites/dex/" + strtolower(head[0]) + ".png'> </td></tr><tr><td><table border=1><tr><td width=60>HP</td></tr><tr><td width=60>ATK</td></tr><tr><td width=60>DEF</td></tr><tr><td width=60>SPA</td></tr><tr><td width=60>SPD</td></tr><tr><td width=60>SPE</td></tr><tr><td width=60>BST</td></tr></table></td><td><table border=1>";
@@ -121,7 +130,7 @@
             var val, bst, most, x, y;
             bst = 0;
             most = array(-1, 255);
-            x = validateForm('x');
+            x = getForm('x');
             y = (510 - 42 * $x) / 6;
             for(var i = 0; $i < 6; $i++){
                 val[i] = ((head[6 + i] + tail[6 + i]) * x + y);
