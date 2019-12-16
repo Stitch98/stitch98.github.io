@@ -8,7 +8,7 @@
         }
 
         function getForm(fname) {
-            document.write(fname + " non presa. <br>");
+            document.write(fname + ": " + document.forms["myForm"][fname].value + "<br>");
             return document.forms["myForm"][fname].value;
         }
 
