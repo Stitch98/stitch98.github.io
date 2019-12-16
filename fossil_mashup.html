@@ -147,8 +147,8 @@ if(anyset()) {
     buffer = "<table>";
     bst = 0;
     most = array(-1, 255);
-    y = (510 - 42 * $x) / 6;
-    for(var i = 0; $i < 6; $i++){
+    y = (510 - 42 * x) / 6;
+    for(var i = 0; i < 6; i++){
         val[i] = ((head[6 + i] + tail[6 + i]) * x + y);
         bst += val[i];
         if(val[i] < most[1]){
@@ -172,10 +172,10 @@ if(anyset()) {
         val[4] = tmp;
     }
     for(stat of val)
-        buffer += '<tr><td width=120>' + $stat + '</td></tr>';  
-    buffer += '<tr><td width=110>' + $bst + '</td></tr></table>';  
+        buffer += '<tr><td width=120>' + stat + '</td></tr>';  
+    buffer += '<tr><td width=110>' + bst + '</td></tr></table>';  
     document.getElementById("stat_fusion").innerHTML = buffer;
-    document.getElementById("sprite_fusee_2").innerHTML = '<input type="image" src="https://play.pokemonshowdown.com/sprites/dex/' + $tail[0].toLowerCase() + '.png">';
+    document.getElementById("sprite_fusee_2").innerHTML = '<input type="image" src="https://play.pokemonshowdown.com/sprites/dex/' + tail[0].toLowerCase() + '.png">';
 }
 </script>
 </html>
