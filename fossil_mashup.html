@@ -8,15 +8,17 @@
         }
 
         function getForm(fname) {
-            document.write(fname + ": " + document.forms["myForm"][fname].value + "<br>");
-            return document.forms["myForm"][fname].value;
+            var x, ass = {fusee1: 0, fusee2: 1, x: 2};
+            x = document.getElementById("myForm").elements[ass[fname]].value;
+            document.write(fname + ": " + x + "<br>");
+            return x;
         }
 
         function anyset(){
             var reqs = ['fusee1', 'fusee2', 'x'];
             var flag = false;
             for(n of reqs){
-                if(isset(document.forms["myForm"][n].value)){
+                if(document.forms["myForm"][n].value != ''){
                     flag = true;
                 }
             }
