@@ -3,21 +3,26 @@
 <head>
 	<title>Fossil Mashup</title>
 	<script>
+	var form_in = '';
+
 	function isset(x){
         return !(typeof x === "undefined");
     }
 
 	function validateForm() {
-  		var x = document.forms["myForm"]['fusee1'].value;
-  		var y = document.forms["myForm"]['fusee2'].value;
-  		if (x == "" || y == "") {
+		if(form_in == ''){
+			form_in = {fusee1: document.forms["myForm"]['fusee1'].value, 
+				   fusee2: document.forms["myForm"]['fusee2'].value,
+				   x: document.forms["myForm"]['x'].value};
+		}
+  		if (form_in['fusee1'] == "" || form_in['fusee2'] == "") {
     		alert("Select 2 fusees.");
-    	return false;
-  	}
-}
+    		return false;
+  		}
+	}
 
     function getForm(fname) {
-        var x = document.forms["myForm"][fname].value;
+        var x = form_in[fname];
         if (x == "") {
             alert("Name must be filled out");
             return false;
