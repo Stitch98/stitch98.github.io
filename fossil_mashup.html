@@ -103,7 +103,7 @@
 </body>
 
 <script>
-// Up there, where 'id = "pn"' appears, should be written the options for heads and tails that are filled down here.
+// Up there, where 'id = ' appears, should be written the characteristics of the fusions, that are filled down here.
 if(anyset()) {
     var head, tail, hname, tname, h, t, name, val, bst, most, x, y;
 
@@ -116,6 +116,7 @@ if(anyset()) {
             if(f[0] == tname) tail = f;
         }
     }
+
     // here the name is determined (you can see how the second entry is used), and then I try to fill the table.
     var buffer = "";
     name  = tail[0].substr(0, tail[1]) + head[0].substr(head[1], head[0].length - 1);
