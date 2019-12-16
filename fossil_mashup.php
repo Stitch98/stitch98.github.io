@@ -98,8 +98,12 @@
 				}
 				$primary = $head[3];
 				$hidden = ($tail[5] != $primary) ? ($tail[5]) : ($tail[3]);
-				$secondary = ($head[3] == $head[5]) ? ('---') : (($tail[3] != $primary && $tail[3] != $hidden) ? ($tail[3]) : (($head[4] != NULL && $head[4] != $primary && $head[4] != $hidden) ? ($head[4]) : ('---')) );
-			?>
+				if($head[3] == $head[5] or $tail[3] == $tail[5]) $secondary = '---';
+				else if($head[4] != NULL and $head[4] != $primary and $head[4] != $hidden) $secondary = $head[4];
+				else if($tail[4] != NULL and $tail[4] != $primary and $tail[4] != $hidden) $secondary = $tail[4];
+				else if($tail[3] != $primary and $tail[3] != $hidden) $secondary = $tail[3];
+				else $secondary = '---';?>
+			
 			<p><?php echo $primary; ?></p>
 			<p><?php echo $secondary; ?></p>
 			<p><?php echo $hidden; ?></p>

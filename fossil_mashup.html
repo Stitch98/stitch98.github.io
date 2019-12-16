@@ -4,146 +4,154 @@
     <title>Fossil Mashup</title>
 </head>
 <body>
-	<script>
-	function isset(x){
-		return !(typeof x === "undefined");
-	}
+    <script>
+    function isset(x){
+        return !(typeof x === "undefined");
+    }
 
-	function validateForm(fname) {
-		var x = document.forms["myForm"][fname].value;
-		if (x == "") {
-			alert("Name must be filled out");
-			return false;
-		}
-		return x;
-	}
+    function validateForm(fname) {
+        var x = document.forms["myForm"][fname].value;
+        if (x == "") {
+            alert("Name must be filled out");
+            return false;
+        }
+        return x;
+    }
 
     function anyset(){
         var reqs = new Array('fusee1', 'fusee2', 'x');
-		var flag = false;
-		for(n of reqs){
-			if(isset(validateForm(n))){
-				flag = true;
-			}
-		}
+        var flag = false;
+        for(n of reqs){
+            if(isset(validateForm(n))){
+                flag = true;
+            }
+        }
 
-		return flag;
+        return flag;
     }
 
     function areset(names){
         var flag = true;
         for(id of names) {
-            if(!isset(validateForm(id)) || strlen(validateForm(id)) <= 0) 
+            if(!isset(validateForm(id)) || strlen(validateForm(id)) <= 0)
                 flag = false;
         }
         return flag;
-	}	
+    } 
+//here i declare the fossil characteristics (name, number of letters in the tail part, type, primary ability, secondary ability - if present - and hidden ability, then the stat boost values for each stat, and finally the Attack of the original Pokémon - to determine which one is the offensive among the fusees).
+    var omastar = 		new Array("OMASTAR",	3, "WATER", 	"SWIFT SWIM", 	"SHELL ARMOR", 	"WEAK ARMOR", 	3, 2, 6, 5, 3, 1, 60),
+		kabutops = 		new Array("KABUTOPS", 	4, "WATER", 	"SWIFT SWIM", 	"BATTLE ARMOR", "WEAK ARMOR", 	1, 6, 5, 2, 3, 4, 115),
+		aerodactyl = 	new Array("AERODACTYL", 4, "FLYING", 	"ROCK HEAD", 	"PRESSURE", 	"UNNERVE", 		4, 5, 1, 2, 3, 6, 105),
+		cradily = 		new Array("CRADILY", 	3, "GRASS", 	"SUCTION CUPS", null, 			"STORM DRAIN", 	4, 2, 5, 2, 6, 1, 81),
+		armaldo = 		new Array("ARMALDO", 	4, "BUG", 		"BATTLE ARMOR", null, 			"SWIFT SWIM", 	3, 6, 5, 2, 4, 1, 125),
+		rampardos = 	new Array("RAMPARDOS", 	5, "ROCK", 		"MOLD BREAKER", null, 			"SHEER FORCE", 	5, 6, 3, 4, 1, 2, 165),
+		bastiodon = 	new Array("BASTIODON", 	6, "STEEL", 	"STURDY", 		null, 			"SOUNDPROOF", 	4, 3, 6, 2, 5, 1, 52),
+		carracosta =	new Array("CARRACOSTA", 5, "WATER", 	"SOLID ROCK", 	"STURDY", 		"SWIFT SWIM", 	3, 6, 5, 4, 2, 1, 108),
+		archeops = 		new Array("ARCHEOPS", 	5, "FLYING", 	"DEFEATIST", 	null, 			"DEFEATIST", 	3, 6, 1, 5, 1, 4, 140),
+		tyrantrum = 	new Array("TYRANTRUM", 	4, "DRAGON", 	"STRONG JAW", 	null, 			"ROCK HEAD", 	4, 6, 5, 2, 1, 3, 121),
+		aurorus = 		new Array("AURORUS", 	4, "ICE", 		"REFRIGERATE", 	null, 			"SNOW WARNING", 6, 3, 2, 5, 4, 1, 77),
+		row = new Array(omastar, kabutops, aerodactyl, cradily, armaldo, rampardos, bastiodon, carracosta, archeops, tyrantrum, aurorus);
+    </script>
 
-	var row = [["OMASTAR", 3, "WATER", "SWIFT SWIM", "SHELL ARMOR", "WEAK ARMOR", 3, 2, 6, 5, 3, 1, 60],
-				["KABUTOPS", 4, "WATER", "SWIFT SWIM", "BATTLE ARMOR", "WEAK ARMOR", 1, 6, 5, 2, 3, 4, 115],
-				["AERODACTYL", 4, "FLYING", "ROCK HEAD", "PRESSURE", "UNNERVE", 4, 5, 1, 2, 3, 6, 105],
-				["CRADILY", 3, "GRASS", "SUCTION CUPS", NULL, "STORM DRAIN", 4, 2, 5, 2, 6, 1, 81],
-				["ARMALDO", 4, "BUG", "BATTLE ARMOR", NULL, "SWIFT SWIM", 3, 6, 5, 2, 4, 1, 125],
-				["RAMPARDOS", 5, "ROCK", "MOLD BREAKER", NULL, "SHEER FORCE", 5, 6, 3, 4, 1, 2, 165],
-				["BASTIODON", 6, "STEEL", "STURDY", NULL, "SOUNDPROOF", 4, 3, 6, 2, 5, 1, 52],
-				["CARRACOSTA", 5, "WATER", "SOLID ROCK", "STURDY", "SWIFT SWIM", 3, 6, 5, 4, 2, 1, 108],
-				["ARCHEOPS", 5, "FLYING", "DEFEATIST", NULL, "DEFEATIST", 3, 6, 1, 5, 1, 4, 140], 
-				["TYRANTRUM", 4, "DRAGON", "STRONG JAW", NULL, "ROCK HEAD", 4, 6, 5, 2, 1, 3, 121], 
-				["AURORUS", 4, "ICE", "REFRIGERATE", NULL, "SNOW WARNING", 6, 3, 2, 5, 4, 1, 77]];
-	</script> 
-
-	<font face='Arial'>
-	<p><h2>Select the Fusees</h2></p>
-    <form name="myForm" action="fossil_mashup.html" onsubmit="return anyset()" method="post">
-	<table>
-		<tr>
-			<td>Fusees:</td>
-			<td><select name="fusee1">
-			<option value=""> -- Head -- </option>
-			<p id="p10">Hello World!</p></select>
-			</td><td><select name="fusee2">
-			<option value=""> -- Tail -- </option>
-			<p id="p11">Hello World!</p></select></td>
-		</tr>
-		<tr>
-			<td><select name="x">
-			<option value=5> Stat Coefficient of 5</option>
-			<option value=10> Stat Coefficient of 10 </option></td>
-			<td><input type="submit" value="Generate" /></td>
-			<td><input type="reset" value="Cancel" /></td>
-		</tr>
-	</table>
-	</form>
-	<p id="p1">Hello World!</p><script>
-	var string1, string2, string3;
-	for(var i = 0; i < row.length; i++){ string2 += "<option value='" + row[i][0] + "'>" + row[i][0] + "</option>"; }
-	document.getElementById("p10").innerHTML = string2;
-	for(var i = 0; i < row.length; i++){ string3 += "<option value='" + row[i][0] + "'>" + row[i][0] + "</option>"; }
-	document.getElementById("p11").innerHTML = string3;
-	if(anyset()){
-		var head, tail, hname, tname, h, t, name;
-		/* if(isset(validateForm("Randomize")){
-			h = rand(0, row.length - 1);
-			t = rand(0, row.length - 1);
-			if(h == t) 
-				h = ++h % row.length;
-			head = row[h];
-			tail = row[t];
-		}*/
-		if(areset(new Array('fusee1', 'fusee2', 'x'))) {
-			hname = validateForm('fusee1');
-			tname = validateForm('fusee2');
-			for(f of row){
-				if(f[0] == hname) head = f;
-				if(f[0] == tname) tail = f;
-			}
-		}
-		name  = tail[0].substr(0, $tail[1]) + head[0].substr(head[1], head[0].length - 1);
-		string1 += "<table border='2'><tr> <td><table border='1'><tr><td width='60'> <p>Name:</p> <p>Head:</p> <p>Tail:</p> <p>Type:</p> <p>Ability1:</p> <p>Ability2:</p> <p>HAbility:</p> </td><td width='100'>";
-		string1 += "<p>" + name.toLowerCase() + "</p> <p>" + head[0].toLowerCase() + "</p> <p>" + tail[0].toLowerCase() + "</p> <p><input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + head[2].toLowerCase() + ".png'>";
-		if(head[2].localeCompare(tail[2]) != 0) { 
-			string1 += '<input type="image" src="https://play.pokemonshowdown.com/sprites/types/' + tail[2].toLowerCase() + '.png">';
-		}
-		string1 += "</p>";
-		var primary, hidden, secondary;
-		primary = head[3];
-		hidden = (tail[5] != primary) ? (tail[5]) : (tail[3]);
-		secondary = (head[3] == head[5]) ? ('---') : ((tail[3] != primary && tail[3] != hidden) ? (tail[3]) : ((head[4] != NULL && head[4] != primary && head[4] != hidden) ? (head[4]) : ('---')) );
-		string1 += "<p>" + primary + "</p> <p>" + secondary + "</p> <p>" + hidden + "</p> </td><td><input type='image' src='https://play.pokemonshowdown.com/sprites/dex/" + strtolower(head[0]) + ".png'> </td></tr><tr><td><table border=1><tr><td width=60>HP</td></tr><tr><td width=60>ATK</td></tr><tr><td width=60>DEF</td></tr><tr><td width=60>SPA</td></tr><tr><td width=60>SPD</td></tr><tr><td width=60>SPE</td></tr><tr><td width=60>BST</td></tr></table></td><td><table border=1>"; 
-			var val, bst, most, x, y;
-			bst = 0; 
-			most = array(-1, 255);
-			x = validateForm('x');
-			y = (510 - 42 * $x) / 6;
-			for(var i = 0; $i < 6; $i++){
-				val[i] = ((head[6 + i] + tail[6 + i]) * x + y);
-				bst += val[i];
-				if(val[i] < most[1]){
-					most[0] = i; 
-					most[1] = val[i];
-				}
-			}
-			if(bst == 510){
-				val[most[0]] -= 5;
-				bst -= 5;
-			} else if(bst == 500){
-				val[most[0]] += 5;
-				bst += 5;
-			} 
-			if(head[12] > tail[12]){
-				tmp = val[1];
-				val[1] = val[2];
-				val[2] = tmp;
-				tmp = val[3];
-				val[3] = val[4];
-				val[4] = tmp;
-			}
-			for(stat of val)
-				string1 += '<tr><td width=120>' + $stat + '</td></tr>'; 
-			string1 += '<tr><td width=110>' + $bst + '</td></tr>'; 
-			string1 += '</table></td><td><input type="image" src="https://play.pokemonshowdown.com/sprites/dex/' + strtolower($tail[0]) + '.png">';
-	} else string1 = "";
-	document.getElementById().value = string1 + "</td></tr></table></td></tr></table></font></p>";
-	</script>
+    <font face='Arial'>
+    <p><h2>Select the Fusees</h2></p>
+    <form name="myForm" action="fossil_mashup.html" onsubmit="return anyset();" method="post">
+    <table>
+        <tr>
+            <td>Fusees:</td>
+            <td><select name="fusee1">
+            <option value=""> -- Head -- </option>
+            <script>for(var i = 0; i < row.length; i++){ 
+				document.write("<option value='" + row[i][0] + "'>" + row[i][0] + "</option>"); 
+			} </script></select>
+            </td><td><select name="fusee2">
+            <option value=""> -- Tail -- </option>
+            <script>for(var i = 0; i < row.length; i++){ 
+				document.write("<option value='" + row[i][0] + "'>" + row[i][0] + "</option>"); 
+			} </script></select></td>
+        </tr>
+        <tr>
+            <td><select name="x">
+            <option value=5> Stat Coefficient of 5</option>
+            <option value=10> Stat Coefficient of 10 </option></td>
+            <td><input type="submit" value="Generate" /></td>
+            <td><input type="reset" value="Cancel" /></td>
+        </tr>
+    </table>
+    </form><script>
+// Up there, where 'id = "pn"' appears, should be written the options for heads and tails that are filled down here.
+    if(anyset()){
+        var head, tail, hname, tname, h, t, name;
+        /* if(isset(validateForm("Randomize")){
+            h = rand(0, row.length - 1);
+            t = rand(0, row.length - 1);
+            if(h == t)
+                h = ++h % row.length;
+            head = row[h];
+            tail = row[t];
+        }*/
+        if(areset(new Array('fusee1', 'fusee2', 'x'))) {
+            hname = validateForm('fusee1');
+            tname = validateForm('fusee2');
+            for(f of row){
+                if(f[0] == hname) head = f;
+                if(f[0] == tname) tail = f;
+            }
+        }
+// here the name is determined (you can see how the second entry is used), and then I try to fill the table.
+        name  = tail[0].substr(0, $tail[1]) + head[0].substr(head[1], head[0].length - 1);
+		document.write("<table border='2'><tr> <td><table border='1'><tr><td width='60'> <p>Name:</p> <p>Head:</p> <p>Tail:</p> <p>Type:</p> <p>Ability1:</p> <p>Ability2:</p> <p>HAbility:</p> </td><td width='100'>");
+		document.write("<p>" + name.toLowerCase() + "</p> <p>" + head[0].toLowerCase() + "</p> <p>" + tail[0].toLowerCase() + "</p> <p><input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + head[2].toLowerCase() + ".png'>");
+        if(head[2].localeCompare(tail[2]) != 0) {
+			document.write('<input type="image" src="https://play.pokemonshowdown.com/sprites/types/' + tail[2].toLowerCase() + '.png">');
+        }
+		document.write("</p>");
+// abilities are determined now, you can see the if-then-else mechanism behind secondary ability determination.
+        var primary, hidden, secondary;
+        primary = head[3];
+        hidden = (tail[5] != primary) ? (tail[5]) : (tail[3]);
+        if(head[3] == head[5] || tail[3] == tail[5]) secondary = '---';
+        else if(head[4] != null && head[4] != primary && head[4] != hidden) secondary = head[4];
+        else if(tail[4] != null && tail[4] != primary && tail[4] != hidden) secondary = tail[4];
+        else if(tail[3] != primary && tail[3] != hidden) secondary = tail[3];
+        else secondary = '---';
+		document.write("<p>" + primary + "</p> <p>" + secondary + "</p> <p>" + hidden + "</p> </td><td><input type='image' src='https://play.pokemonshowdown.com/sprites/dex/" + strtolower(head[0]) + ".png'> </td></tr><tr><td><table border=1><tr><td width=60>HP</td></tr><tr><td width=60>ATK</td></tr><tr><td width=60>DEF</td></tr><tr><td width=60>SPA</td></tr><tr><td width=60>SPD</td></tr><tr><td width=60>SPE</td></tr><tr><td width=60>BST</td></tr></table></td><td><table border=1>";
+// here the stats are determined: first is determined the stat multiplier and the amount to be added to each stat, then each stat with the formula described above, then the correction to fit the 505 BST is applied; after that the stats are inverted in the case head's Attack is higher than tail's.
+// then each satt should be printed inside the string string1 and then shown in the website, but it doesn't happen.
+            var val, bst, most, x, y;
+            bst = 0;
+            most = array(-1, 255);
+            x = validateForm('x');
+            y = (510 - 42 * $x) / 6;
+            for(var i = 0; $i < 6; $i++){
+                val[i] = ((head[6 + i] + tail[6 + i]) * x + y);
+                bst += val[i];
+                if(val[i] < most[1]){
+                    most[0] = i;
+                    most[1] = val[i];
+                }
+            }
+            if(bst == 510){
+                val[most[0]] -= 5;
+                bst -= 5;
+            } else if(bst == 500){
+                val[most[0]] += 5;
+                bst += 5;
+            }
+            if(head[12] > tail[12]){
+                tmp = val[1];
+                val[1] = val[2];
+                val[2] = tmp;
+                tmp = val[3];
+                val[3] = val[4];
+                val[4] = tmp;
+            }
+            for(stat of val)
+				document.write('<tr><td width=120>' + $stat + '</td></tr>');  
+			document.write('<tr><td width=110>' + $bst + '</td></tr>');   
+			document.write('</table></td><td><input type="image" src="https://play.pokemonshowdown.com/sprites/dex/' + strtolower($tail[0]) + '.png">');
+    	}
+    	document.write("</td></tr></table></td></tr></table></font></p>");
+    </script>
 </body>
 </html>
