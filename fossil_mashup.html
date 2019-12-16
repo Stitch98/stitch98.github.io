@@ -171,8 +171,8 @@ if(anyset()) {
     }
     for(stat of val)
         buffer += '<tr><td width=120>' + $stat + '</td></tr>';  
-    buffer += '<tr><td width=110>' + $bst + '</td></tr>';  
-    document.getElementById("stat_fusion").innerHTML = buffer + '</table>';
+    buffer += '<tr><td width=110>' + $bst + '</td></tr></table>';  
+    document.getElementById("stat_fusion").innerHTML = buffer;
     document.getElementById("sprite_fusee_2").innerHTML = '<input type="image" src="https://play.pokemonshowdown.com/sprites/dex/' + $tail[0].toLowerCase() + '.png">';
 }
 </script>
