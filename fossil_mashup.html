@@ -39,19 +39,19 @@
     <table>
         <tr>
             <td>Fusees:</td>
-            <td><select name="h">
+            <td><select name="h" id="head">
             <option value=""> -- Head -- </option>
             <script>for(var i = 0; i < row.length; i++){ 
 				document.write("<option value=" + i + ">" + row[i][0] + "</option>"); 
 			} </script></select>
-            </td><td><select name="t">
+            </td><td><select name="t" id="tail">
             <option value=""> -- Tail -- </option>
             <script>for(var i = 0; i < row.length; i++){ 
 				document.write("<option value=" + i + ">" + row[i][0] + "</option>"); 
 			} </script></select></td>
         </tr>
         <tr>
-            <td><select name="x">
+            <td><select name="x" id="x">
 				<option value=5> Stat Coefficient of 5</option>
 				<option value=10> Stat Coefficient of 10 </option>
             </select></td>
@@ -95,9 +95,9 @@
 function fillTable() {
     var head, tail, h, t, name, val, bst, most, x, y;
 
-    h = getForm('h');
-    t = getForm('t');
-    x = getForm('x');
+    h = document.getElementById("head").value;
+    t = document.getElementById("tail").value;
+    x = document.getElementById("x").value;
     if(h != '' && t != ''){
         head = row[h];
         tail = row[t];
@@ -161,7 +161,7 @@ function fillTable() {
         buffer += '<tr><td width=110>' + bst + '</td></tr></table>';  
         document.getElementById("stat_fusion").innerHTML = buffer;
         document.getElementById("sprite_fusee_2").innerHTML = '<input type="image" src="https://play.pokemonshowdown.com/sprites/dex/' + tail[0].toLowerCase() + '.png">';
-    }
+    } else alert("Select head and tail.");
 }
 </script>
 </body>
