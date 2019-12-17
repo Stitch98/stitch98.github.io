@@ -61,7 +61,7 @@
 				<option value=5> Stat Coefficient of 5</option>
 				<option value=10> Stat Coefficient of 10 </option>
             </select></td>
-			<td><input type="submit" value="Generate" /></td>
+			<td><button onclick="fillTable()">Generate!</button></td>
 			<td><input type="reset" value="Cancel" /></td>
         </tr>
     </table>
@@ -98,7 +98,7 @@
         </tr>
     </table></font><script>
 // Up there, where 'id = ' appears, should be written the characteristics of the fusions, that are filled down here.
-if(anyset()) {
+function fillTable() {
     var head, tail, h, t, name, val, bst, most, x, y;
 
     h = getForm(0);
