@@ -46,7 +46,7 @@
     <table>
         <tr>
             <td>Fusees:</td>
-            <td><select name="h" id="head" width=120>
+            <td><table><tr><td><select name="h" id="head" width=120>
             <option value=""> -- Head -- </option>
             <script>for(var i = 0; i < row.length; i++){ 
 				document.write("<option value=" + i + ">" + row[i][0] + "</option>"); 
@@ -55,16 +55,16 @@
             <option value=""> -- Tail -- </option>
             <script>for(var i = 0; i < row.length; i++){ 
 				document.write("<option value=" + i + ">" + row[i][0] + "</option>"); 
-			} </script></select></td>
+			} </script></select></td></tr></table></td>
         </tr>
         <tr>
             <td><select name="x" id="x">
 				<option value=5> Stat Coefficient of 5</option>
 				<option value=10> Stat Coefficient of 10 </option>
             </select></td>
-			<td><button onclick="fillTable()">Generate</button></td>
+			<td><table><tr><td><button onclick="fillTable()">Generate</button></td>
 			<td><button onclick="swap()">Swap</button></td>
-			<td><button onclick="randomize()">Randomize</button></td>
+			<td><button onclick="randomize()">Randomize</button></td></tr></table></td>
         </tr>
     </table>
     <table border=2>
