@@ -80,7 +80,7 @@
                         <p>HAbility:</p> 
                     </td>
                     <td width=100><p id="traits_fusion">Fusion Traits</p></td>
-                    <td><p id="sprite_fusee_1">Sprite Fusee 1</p></td>
+                    <td><p id="sprite_fusee_1" align='center'>Sprite Fusee 1</p></td>
                 </tr><tr>
                     <td><table border=1>
                       <tr><td width=60>HP</td></tr>
@@ -92,7 +92,7 @@
                       <tr><td width=60>BST</td></tr>
                     </table></td>
                     <td><table border=1 id="stat_fusion"></table></td>
-                    <td><p id="sprite_fusee_2">Sprite Fusee 2</p></td>
+                    <td><p id="sprite_fusee_2" align='center'>Sprite Fusee 2</p></td>
                 </tr>
             </table></td>
         </tr>
@@ -133,7 +133,7 @@
         else secondary = '---';
         buffer1 += "<p>" + primary + "</p> <p>" + secondary + "</p> <p>" + hidden + "</p>";
         document.getElementById("traits_fusion").innerHTML = buffer1;
-        document.getElementById("sprite_fusee_1").innerHTML = "<input type='image' src='https://play.pokemonshowdown.com/sprites/dex/" + head[0].toLowerCase() + ".png'>";
+        document.getElementById("sprite_fusee_1").innerHTML = "<input type='image' src='https://play.pokemonshowdown.com/sprites/ani/" + head[0].toLowerCase() + ".gif'>";
 
         // here the stats are determined: first is determined the stat multiplier and the amount to be added to each stat, 
         // then each stat with the formula described above, then the correction to fit the 505 BST is applied; 
@@ -183,7 +183,7 @@
         }
         buffer2 += '<tr><td width=110>' + bst + '</td></tr>';
         document.getElementById("stat_fusion").innerHTML = buffer2;
-        document.getElementById("sprite_fusee_2").innerHTML = '<input type="image" src="https://play.pokemonshowdown.com/sprites/dex/' + tail[0].toLowerCase() + '.png">';
+        document.getElementById("sprite_fusee_2").innerHTML = '<input type="image" src="https://play.pokemonshowdown.com/sprites/ani/' + tail[0].toLowerCase() + '.gif">';
     }
 
     function fillTable() {
