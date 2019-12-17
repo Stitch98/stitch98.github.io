@@ -112,8 +112,13 @@
 
             // here the name is determined (you can see how the second entry is used), and then I try to fill the table.
             var buffer1 = "";
-            name  = tail[0].substr(0, tail[1]) + head[0].substr(head[1], head[0].length - 1);
-            buffer1 += "<p>" + name + "</p> <p>" + head[0] + "</p> <p>" + tail[0] + "</p>";
+            if(h == t) {
+                name = head[0];
+                buffer1 += "<p> " + name + "</p> <p> -" + head[0].substr(head[1], head[0].length - 1) + "</p> <p> " + head[0].substr(0, head[1]) + "-</p>";
+            } else {
+                name = tail[0].substr(0, tail[1]) + head[0].substr(head[1], head[0].length - 1);
+                buffer1 += "<p>" + name + "</p> <p>" + head[0] + "</p> <p>" + tail[0] + "</p>";
+            }
             buffer1 += "<p><input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + head[2] + ".png'>";
             if(head[2].localeCompare(tail[2]) != 0) {
                 buffer1 += "<input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + tail[2] + ".png'>";
