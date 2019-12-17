@@ -49,12 +49,12 @@
         <tr>
             <td>Fusees:</td>
             <td><select name="fusee1">
-            <option value=""> -- Head -- </option>
+            <option value=""> <i>- Head -</i> </option>
             <script>for(var i = 0; i < row.length; i++){ 
-				document.write("<option value='" + row[i][0] + "'>" + row[i][0] + "</option>"); 
+				document.write("<option value='" + i + "'>" + row[i][0] + "</option>"); 
 			} </script></select>
             </td><td><select name="fusee2">
-            <option value=""> -- Tail -- </option>
+            <option value=""> <i>- Tail -</i> </option>
             <script>for(var i = 0; i < row.length; i++){ 
 				document.write("<option value=" + i + ">" + row[i][0] + "</option>"); 
 			} </script></select></td>
@@ -107,10 +107,8 @@ if(anyset()) {
     x = getForm("x");
     h = getForm("fusee1");
     t = getForm("fusee2");
-    if(isset(hname) && isset(tname)) {
-        head = row[h];
-        tail = row[t];
-    }
+    head = row[h];
+    tail = row[t];
 
     // here the name is determined (you can see how the second entry is used), and then I try to fill the table.
     var buffer = "";
