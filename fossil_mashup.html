@@ -13,6 +13,18 @@
             return x;
         }
         
+        function randInt(a, b){
+            var min, max;
+            if(a > b) {
+            	min = b;
+                max = a;
+            } else {
+            	min = a;
+                max = b;
+            }
+            return Math.floor(Math.random() * (+max - +min)) + +min;
+        }
+        
         //here I declare the fossil characteristics (name, number of letters in the tail part, type, primary ability, secondary ability - if present - and hidden ability, then the stat boost values for each stat, and finally the Attack of the original Pokémon - to determine which one is the offensive among the fusees).
         var omastar = 		new Array("Omastar",	3, "Water", 	"Swift Swim", 	"Shell Armor", 	"Weak Armor", 	3, 2, 6, 5, 3, 1, 60),
             kabutops = 		new Array("Kabutops", 	4, "Water", 	"Swift Swim", 	"Battle Armor", "Weak Armor", 	1, 6, 5, 2, 3, 4, 115),
@@ -52,6 +64,7 @@
             </select></td>
 			<td><button onclick="fillTable()">Generate</button></td>
 			<td><button onclick="swap()">Swap</button></td>
+			<td><button onclick="randomize()">Randomize</button></td>
         </tr>
     </table>
     <table border=2>
@@ -174,6 +187,15 @@
     	var tmp = document.getElementById("head").value;
         document.getElementById("head").value = document.getElementById("tail").value;
         document.getElementById("tail").value = tmp;
+        fillTable();
+    }
+    
+    function randomize() {
+    	var hr = randInt(0, 10);
+        var tr = randInt(0, 10);
+        if(hr == tr) tr++;
+    	document.getElementById("head").value = hr;
+        document.getElementById("tail").value = tr;
         fillTable();
     }
     </script>
