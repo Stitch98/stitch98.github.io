@@ -22,6 +22,10 @@
             }
             return false;
         } 
+
+        function ucfirst(){
+            return this[0].toUpperCase() + this.substr(1, this.length - 1) + "";
+        }
         
         //here I declare the fossil characteristics (name, number of letters in the tail part, type, primary ability, secondary ability - if present - and hidden ability, then the stat boost values for each stat, and finally the Attack of the original Pokémon - to determine which one is the offensive among the fusees).
         var omastar = 		new Array("OMASTAR",	3, "WATER", 	"SWIFT SWIM", 	"SHELL ARMOR", 	"WEAK ARMOR", 	3, 2, 6, 5, 3, 1, 60),
@@ -45,12 +49,12 @@
     <table>
         <tr>
             <td>Fusees:</td>
-            <td><select name="a">
+            <td><select name="h">
             <option value=""> -- Head -- </option>
             <script>for(var i = 0; i < row.length; i++){ 
 				document.write("<option value=" + i + ">" + row[i][0] + "</option>"); 
 			} </script></select>
-            </td><td><select name="b">
+            </td><td><select name="t">
             <option value=""> -- Tail -- </option>
             <script>for(var i = 0; i < row.length; i++){ 
 				document.write("<option value=" + i + ">" + row[i][0] + "</option>"); 
@@ -110,10 +114,10 @@ function fillTable() {
     // here the name is determined (you can see how the second entry is used), and then I try to fill the table.
     var buffer = "";
     name  = tail[0].substr(0, tail[1]) + head[0].substr(head[1], head[0].length - 1);
-    buffer += "<p>" + name.toLowerCase() + "</p> <p>" + head[0].toLowerCase() + "</p> <p>" + tail[0].toLowerCase() + "</p>";
-    buffer += "<p><input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + head[2].toLowerCase() + ".png'>";
+    buffer += "<p>" + name.toLowerCase().ucfirst() + "</p> <p>" + head[0].toLowerCase().ucfirst() + "</p> <p>" + tail[0].toLowerCase().ucfirst() + "</p>";
+    buffer += "<p><input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + head[2].toLowerCase().ucfirst() + ".png'>";
     if(head[2].localeCompare(tail[2]) != 0) {
-        buffer += "<input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + tail[2].toLowerCase() + ".png'>";
+        buffer += "<input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + tail[2].toLowerCase().ucfirst() + ".png'>";
     }
     buffer += "</p>";
 
