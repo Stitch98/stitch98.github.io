@@ -7,9 +7,9 @@
             return !(typeof x === "undefined");
         }
 
-        function getForm(fname) {
+        function getForm(f) {
             var x, ass = {fusee1: 0, fusee2: 1, x: 2};
-            x = document.getElementById("myForm").elements[ass[fname]].value;
+            x = document.getElementById("myForm").elements[f].value;
             document.write(fname + ": " + x + "<br>");
             return x;
         }
@@ -104,9 +104,9 @@
 if(anyset()) {
     var head, tail, h, t, name, val, bst, most, x, y;
 
-    x = getForm("x");
-    h = getForm("fusee1");
-    t = getForm("fusee2");
+    h = getForm(0);
+    t = getForm(1);
+    x = getForm(2);
     head = row[h];
     tail = row[t];
 
