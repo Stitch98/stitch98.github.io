@@ -92,7 +92,7 @@
                       <tr><td width=60>SPE</td></tr>
                       <tr><td width=60>BST</td></tr>
                     </table></td>
-                    <td><p id="stat_fusion">Fusion Stats</p></td>
+                    <td><table border=1 id="stat_fusion"></table></td>
                     <td><p id="sprite_fusee_2">Sprite Fusee 2</p></td>
                 </tr>
             </table></td>
@@ -137,7 +137,7 @@
             // then each stat with the formula described above, then the correction to fit the 505 BST is applied; 
             // after that the stats are inverted in the case head's Attack is higher than tail's.
             // then each stat should be printed inside the string buffer 2 and then shown in the website.
-            buffer2 = "<table border=1>";
+            buffer2 = "";
             bst = 0;
             most = [-1, 255];
             y = (510 - 42 * x) / 6;
@@ -177,7 +177,7 @@
             for(stat of val){
                 buffer2 += '<tr><td width=120>' + stat + '</td></tr>';  
             }
-            buffer2 += '<tr><td width=110>' + bst + '</td></tr></table>';
+            buffer2 += '<tr><td width=110>' + bst + '</td></tr>';
             document.getElementById("stat_fusion").innerHTML = buffer2;
             document.getElementById("sprite_fusee_2").innerHTML = '<input type="image" src="https://play.pokemonshowdown.com/sprites/dex/' + tail[0].toLowerCase() + '.png">';
         } else alert("Select head and tail.");
