@@ -8,20 +8,10 @@
         }
 
         function getForm(f) {
-            var x, ass = {fusee1: 0, fusee2: 1, x: 2};
-            x = document.getElementById("myForm").elements[f].value;
-            document.write(f + ": " + x + "<br>");
+            var x, ass = {h: 0, t: 1, x: 2};
+            x = document.getElementById("myForm").elements[ass[f]].value;
             return x;
         }
-
-        function anyset(){
-            for(var n = 0; n < 3; n++){
-                if(document.forms["myForm"][n].value != ''){
-                    return true;
-                }
-            }
-            return false;
-        } 
 
         function ucfirst(){
             return this[0].toUpperCase() + this.substr(1, this.length - 1) + "";
@@ -105,9 +95,9 @@
 function fillTable() {
     var head, tail, h, t, name, val, bst, most, x, y;
 
-    h = getForm(0);
-    t = getForm(1);
-    x = getForm(2);
+    h = getForm('h');
+    t = getForm('t');
+    x = getForm('x');
     head = row[h];
     tail = row[t];
 
