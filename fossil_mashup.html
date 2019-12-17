@@ -12,23 +12,19 @@
             x = document.getElementById("myForm").elements[ass[f]].value;
             return x;
         }
-
-        function ucfirst(){
-            return this.charAt(0).toUpperCase() + this.substr(1, this.length - 1) + "";
-        }
         
         //here I declare the fossil characteristics (name, number of letters in the tail part, type, primary ability, secondary ability - if present - and hidden ability, then the stat boost values for each stat, and finally the Attack of the original Pokémon - to determine which one is the offensive among the fusees).
-        var omastar = 		new Array("OMASTAR",	3, "WATER", 	"SWIFT SWIM", 	"SHELL ARMOR", 	"WEAK ARMOR", 	3, 2, 6, 5, 3, 1, 60),
-            kabutops = 		new Array("KABUTOPS", 	4, "WATER", 	"SWIFT SWIM", 	"BATTLE ARMOR", "WEAK ARMOR", 	1, 6, 5, 2, 3, 4, 115),
-            aerodactyl = 	new Array("AERODACTYL", 4, "FLYING", 	"ROCK HEAD", 	"PRESSURE", 	"UNNERVE", 		4, 5, 1, 2, 3, 6, 105),
-            cradily = 		new Array("CRADILY", 	3, "GRASS", 	"SUCTION CUPS", "", 			"STORM DRAIN", 	4, 2, 5, 2, 6, 1, 81),
-            armaldo = 		new Array("ARMALDO", 	4, "BUG", 		"BATTLE ARMOR", "", 			"SWIFT SWIM", 	3, 6, 5, 2, 4, 1, 125),
-            rampardos = 	new Array("RAMPARDOS", 	5, "ROCK", 		"MOLD BREAKER", "", 			"SHEER FORCE", 	5, 6, 3, 4, 1, 2, 165),
-            bastiodon = 	new Array("BASTIODON", 	6, "STEEL", 	"STURDY", 		"", 			"SOUNDPROOF", 	4, 3, 6, 2, 5, 1, 52),
-            carracosta =	new Array("CARRACOSTA", 5, "WATER", 	"SOLID ROCK", 	"STURDY", 		"SWIFT SWIM", 	3, 6, 5, 4, 2, 1, 108),
-            archeops = 		new Array("ARCHEOPS", 	5, "FLYING", 	"DEFEATIST", 	"", 			"DEFEATIST", 	3, 6, 1, 5, 1, 4, 140),
-            tyrantrum = 	new Array("TYRANTRUM", 	4, "DRAGON", 	"STRONG JAW", 	"", 			"ROCK HEAD", 	4, 6, 5, 2, 1, 3, 121),
-            aurorus = 		new Array("AURORUS", 	4, "ICE", 		"REFRIGERATE", 	"", 			"SNOW WARNING", 6, 3, 2, 5, 4, 1, 77),
+        var omastar = 		new Array("Omastar",	3, "Water", 	"SWIFT SWIM", 	"SHELL ARMOR", 	"WEAK ARMOR", 	3, 2, 6, 5, 3, 1, 60),
+            kabutops = 		new Array("Kabutops", 	4, "Water", 	"SWIFT SWIM", 	"BATTLE ARMOR", "WEAK ARMOR", 	1, 6, 5, 2, 3, 4, 115),
+            aerodactyl = 	new Array("Aerodactyl", 4, "Flying", 	"ROCK HEAD", 	"PRESSURE", 	"UNNERVE", 		4, 5, 1, 2, 3, 6, 105),
+            cradily = 		new Array("Cradily", 	3, "Grass", 	"SUCTION CUPS", "", 			"STORM DRAIN", 	4, 2, 5, 2, 6, 1, 81),
+            armaldo = 		new Array("Armaldo", 	4, "Bug", 		"BATTLE ARMOR", "", 			"SWIFT SWIM", 	3, 6, 5, 2, 4, 1, 125),
+            rampardos = 	new Array("Rampardos", 	5, "Rock", 		"MOLD BREAKER", "", 			"SHEER FORCE", 	5, 6, 3, 4, 1, 2, 165),
+            bastiodon = 	new Array("Bastiodon", 	6, "Steel", 	"STURDY", 		"", 			"SOUNDPROOF", 	4, 3, 6, 2, 5, 1, 52),
+            carracosta =	new Array("Carracosta", 5, "Water", 	"SOLID ROCK", 	"STURDY", 		"SWIFT SWIM", 	3, 6, 5, 4, 2, 1, 108),
+            archeops = 		new Array("Archeops", 	5, "Flying", 	"DEFEATIST", 	"", 			"DEFEATIST", 	3, 6, 1, 5, 1, 4, 140),
+            tyrantrum = 	new Array("Tyrantrum", 	4, "Dragon", 	"STRONG JAW", 	"", 			"ROCK HEAD", 	4, 6, 5, 2, 1, 3, 121),
+            aurorus = 		new Array("Aurorus", 	4, "Ice", 		"REFRIGERATE", 	"", 			"SNOW WARNING", 6, 3, 2, 5, 4, 1, 77),
             row = new Array(omastar, kabutops, aerodactyl, cradily, armaldo, rampardos, bastiodon, carracosta, archeops, tyrantrum, aurorus); 
      </script>
 </head>
@@ -102,14 +98,14 @@
             tail = row[t];
 
             // here the name is determined (you can see how the second entry is used), and then I try to fill the table.
-            var buffer = "";
+            var buffer1 = "";
             name  = tail[0].substr(0, tail[1]) + head[0].substr(head[1], head[0].length - 1);
-            buffer += "<p>" + name.toLowerCase().ucfirst() + "</p> <p>" + head[0].toLowerCase().ucfirst() + "</p> <p>" + tail[0].toLowerCase().ucfirst() + "</p>";
-            buffer += "<p><input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + head[2].toLowerCase().ucfirst() + ".png'>";
+            buffer1 += "<p>" + name + "</p> <p>" + head[0] + "</p> <p>" + tail[0] + "</p>";
+            buffer1 += "<p><input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + head[2] + ".png'>";
             if(head[2].localeCompare(tail[2]) != 0) {
-                buffer += "<input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + tail[2].toLowerCase().ucfirst() + ".png'>";
+                buffer1 += "<input type='image' src='https://play.pokemonshowdown.com/sprites/types/" + tail[2] + ".png'>";
             }
-            buffer += "</p>";
+            buffer1 += "</p>";
 
             // abilities are determined now, you can see the if-then-else mechanism behind secondary ability determination.
             var primary, hidden, secondary;
@@ -120,18 +116,19 @@
             else if(tail[4] != "" && tail[4] != primary && tail[4] != hidden) secondary = tail[4];
             else if(tail[3] != primary && tail[3] != hidden) secondary = tail[3];
             else secondary = '---';
-            buffer += "<p>" + primary + "</p> <p>" + secondary + "</p> <p>" + hidden + "</p>";
-            document.getElementById("traits_fusion").innerHTML = buffer;
+            buffer1 += "<p>" + primary + "</p> <p>" + secondary + "</p> <p>" + hidden + "</p>";
+            document.getElementById("traits_fusion").innerHTML = buffer1;
             document.getElementById("sprite_fusee_1").innerHTML = "<input type='image' src='https://play.pokemonshowdown.com/sprites/dex/" + head[0].toLowerCase() + ".png'>";
 
             // here the stats are determined: first is determined the stat multiplier and the amount to be added to each stat, 
             // then each stat with the formula described above, then the correction to fit the 505 BST is applied; 
             // after that the stats are inverted in the case head's Attack is higher than tail's.
             // then each satt should be printed inside the string string1 and then shown in the website, but it doesn't happen.
-            buffer = "<table>";
+            buffer2 = "<table border=1>";
             bst = 0;
-            most = array(-1, 255);
+            most = [-1, 255];
             y = (510 - 42 * x) / 6;
+            val = [0, 0, 0, 0, 0, 0];
             for(var i = 0; i < 6; i++){
                 val[i] = ((head[6 + i] + tail[6 + i]) * x + y);
                 bst += val[i];
@@ -155,10 +152,11 @@
                 val[3] = val[4];
                 val[4] = tmp;
             }
-            for(stat of val)
-                buffer += '<tr><td width=120>' + stat + '</td></tr>';  
-            buffer += '<tr><td width=110>' + bst + '</td></tr></table>';  
-            document.getElementById("stat_fusion").innerHTML = buffer;
+            for(stat of val){
+                buffer2 += '<tr><td width=120>' + stat + '</td></tr>';  
+            }
+            buffer2 += '<tr><td width=110>' + bst + '</td></tr></table>';
+            document.getElementById("stat_fusion").innerHTML = buffer2;
             document.getElementById("sprite_fusee_2").innerHTML = '<input type="image" src="https://play.pokemonshowdown.com/sprites/dex/' + tail[0].toLowerCase() + '.png">';
         } else alert("Select head and tail.");
     }
