@@ -34,12 +34,12 @@
     <table>
         <tr>
             <td>Fusees:</td>
-            <td><select name="h" id="head">
+            <td><select name="h" id="head" width=120>
             <option value=""> -- Head -- </option>
             <script>for(var i = 0; i < row.length; i++){ 
 				document.write("<option value=" + i + ">" + row[i][0] + "</option>"); 
 			} </script></select>
-            </td><td><select name="t" id="tail">
+            </td><td><select name="t" id="tail" width=120>
             <option value=""> -- Tail -- </option>
             <script>for(var i = 0; i < row.length; i++){ 
 				document.write("<option value=" + i + ">" + row[i][0] + "</option>"); 
@@ -51,7 +51,7 @@
 				<option value=10> Stat Coefficient of 10 </option>
             </select></td>
 			<td><button onclick="fillTable()">Generate</button></td>
-			<td><input type="reset" value="Cancel" /></td>
+			<td><button onclick="swap()">Swap</button></td>
         </tr>
     </table>
     <table border=2>
@@ -123,7 +123,7 @@
             // here the stats are determined: first is determined the stat multiplier and the amount to be added to each stat, 
             // then each stat with the formula described above, then the correction to fit the 505 BST is applied; 
             // after that the stats are inverted in the case head's Attack is higher than tail's.
-            // then each satt should be printed inside the string string1 and then shown in the website, but it doesn't happen.
+            // then each stat should be printed inside the string buffer 2 and then shown in the website.
             buffer2 = "<table border=1>";
             bst = 0;
             most = [-1, 255];
@@ -168,6 +168,13 @@
             document.getElementById("stat_fusion").innerHTML = buffer2;
             document.getElementById("sprite_fusee_2").innerHTML = '<input type="image" src="https://play.pokemonshowdown.com/sprites/dex/' + tail[0].toLowerCase() + '.png">';
         } else alert("Select head and tail.");
+    }
+    
+    function swap(){
+    	var tmp = document.getElementById("head").value;
+        document.getElementById("head").value = document.getElementById("tail").value;
+        document.getElementById("tail").value = tmp;
+        fillTable();
     }
     </script>
 </body>
