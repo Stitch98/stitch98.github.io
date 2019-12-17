@@ -15,15 +15,12 @@
         }
 
         function anyset(){
-            var reqs = ['fusee1', 'fusee2', 'x'];
-            var flag = false;
-            for(n of reqs){
+            for(var n = 0; n < 3; n++){
                 if(document.forms["myForm"][n].value != ''){
-                    flag = true;
+                    return true;
                 }
             }
-
-            return flag;
+            return false;
         } 
         
         //here I declare the fossil characteristics (name, number of letters in the tail part, type, primary ability, secondary ability - if present - and hidden ability, then the stat boost values for each stat, and finally the Attack of the original Pokémon - to determine which one is the offensive among the fusees).
@@ -48,12 +45,12 @@
     <table>
         <tr>
             <td>Fusees:</td>
-            <td><select name="fusee1">
+            <td><select name="a">
             <option value=""> -- Head -- </option>
             <script>for(var i = 0; i < row.length; i++){ 
 				document.write("<option value=" + i + ">" + row[i][0] + "</option>"); 
 			} </script></select>
-            </td><td><select name="fusee2">
+            </td><td><select name="b">
             <option value=""> -- Tail -- </option>
             <script>for(var i = 0; i < row.length; i++){ 
 				document.write("<option value=" + i + ">" + row[i][0] + "</option>"); 
