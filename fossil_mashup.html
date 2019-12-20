@@ -20,28 +20,56 @@
             return Math.floor(Math.random() * (+max - +min)) + +min;
         }
 
+        function duplicate(){
+            var c = new Array();
+            if(Arrays.isArray(this)){
+                for(y of this){ c.push(y); }
+                return c;
+            } else return false;
+        }
+
+        function union(v){
+            var c = this.duplicate();
+            if(Arrays.isArray(this) && Arrays.isArray(v)){
+                for(y of v){ if(!c.includes(y)) c.push(y); }
+                return c;
+            } else return false;
+        }
+
+        function difference(v){
+            var c = new Array();
+            if(Arrays.isArray(this) && Arrays.isArray(v)){
+                for(y of this){ if(!v.includes(y)) c.push(y); }
+                return c;
+            } else return false;
+        }
+
         //here I declare the fossil characteristics (name, number of letters in the tail part, type, primary ability, secondary ability - if present - and hidden ability, then the stat boost values for each stat, and finally the Attack of the original Pokémon - to determine which one is the offensive among the fusees).
         var omastar = new Array("Omastar", 3, "Water", "Swift Swim", "Shell Armor", "Weak Armor", 3, 2, 6, 5, 3, 1, 60),
             kabutops = new Array("Kabutops", 4, "Water", "Swift Swim", "Battle Armor", "Weak Armor", 1, 6, 5, 2, 3, 4, 115),
             aerodactyl = new Array("Aerodactyl", 4, "Flying", "Rock Head", "Pressure", "Unnerve", 4, 5, 1, 2, 3, 6, 105),
             cradily = new Array("Cradily", 3, "Grass", "Suction Cups", "", "Storm Drain", 4, 2, 5, 2, 6, 1, 81),
             armaldo = new Array("Armaldo", 4, "Bug", "Battle Armor", "", "Swift Swim", 3, 6, 5, 2, 4, 1, 125),
-            rampardos = new Array("Rampardos", 5, "Rock", "Mold Breaker", "", "Sheer Force", 5, 6, 3, 4, 1, 2, 165),
+            rampardos = new Array("Rampardos", 5, "Rock", "Mold Breaker", "", "Sheer Force", 5, 6, 3, 4, 1, 2, 165,
+            ["Crunch", "Hammer Arm", "Head Smash", "Iron Head", "Scary Face", "Zen Headbutt"], ["Curse", "Dragon Tail", "Iron Tail", "Slam", "Superpower", "Whirlwind"],
+            ["Fire Punch", "Flamethrower", "Focus Blast", "High Horsepower", "Ice Beam", "Ice Punch", "Rock Blast", "Swords Dance", "Thunderbolt", "Thunder Punch"]),
             bastiodon = new Array("Bastiodon", 6, "Steel", "Sturdy", "", "Soundproof", 4, 3, 6, 2, 5, 1, 52),
             carracosta = new Array("Carracosta", 5, "Water", "Solid Rock", "Sturdy", "Swift Swim", 3, 6, 5, 4, 2, 1, 108),
             archeops = new Array("Archeops", 5, "Flying", "Defeatist", "", "Defeatist", 3, 6, 1, 5, 1, 4, 140),
-            tyrantrum = new Array("Tyrantrum", 4, "Dragon", "Strong Jaw", "", "Rock Head", 4, 6, 5, 2, 1, 3, 121),
+            tyrantrum = new Array("Tyrantrum", 4, "Dragon", "Strong Jaw", "", "Rock Head", 4, 6, 5, 2, 1, 3, 121, 
+            ["Head Smash", "Draco Meteor", "Crunch", "Poison Fang", "Charm", "Roar"], ["Dragon Tail", "Iron Tail", "Superpower", "Hone Claws", "Curse", "Block"], 
+            ["Dragon Dance", "Dragon Claw", "Dragon Pulse", "Outrage", "Breaking Swipe", "Psychic Fangs", "Fire Fang", "Ice Fang", "Dark Pulse", "Hyper Voice"]),
             aurorus = new Array("Aurorus", 4, "Ice", "Refrigerate", "", "Snow Warning", 6, 3, 2, 5, 4, 1, 77),
             row = new Array(omastar, kabutops, aerodactyl, cradily, armaldo, rampardos, bastiodon, carracosta, archeops, tyrantrum, aurorus); 
     </script>
 </head>
 
 <body style="background-color: #1d1d1d;">
-    <font face='Arial'>
+    <font face='Arial' color='#dedede'>
         <table>
             <tr>
                 <td>
-                    <font color='#dedede'>Select the Fossils: </font>
+                    <b>Select the Fossils:</b>
                 </td>
                 <td>
                     <table>
@@ -85,7 +113,6 @@
                     <table border=1>
                         <tr>
                             <td width=60>
-                                <font color='#dedede'>
                                     <p>Name:</p>
                                     <p>Head:</p>
                                     <p>Tail:</p>
@@ -93,12 +120,9 @@
                                     <p>Ability1:</p>
                                     <p>Ability2:</p>
                                     <p>HAbility:</p>
-                                </font>
                             </td>
                             <td width=100 style='background-color: #2f2f2f'>
-                                <font color='#dedede'>
                                     <p id="traits_fusion">Fusion Traits</p>
-                                </font>
                             </td>
                             <td>
                                 <p id="sprite_fusee_1" align='center'>Sprite Fusee 1</p>
@@ -106,7 +130,6 @@
                         </tr>
                         <tr>
                             <td>
-                                <font color='#dedede'>
                                     <table border=1>
                                         <tr>
                                             <td width=60>HP</td>
@@ -130,18 +153,39 @@
                                             <td width=60>BST</td>
                                         </tr>
                                     </table>
-                                </font>
                             </td>
                             <td style='background-color: #2f2f2f'>
-                                <font color='#dedede'>
                                     <table border=1 id="stat_fusion"></table>
-                                </font>
                             </td>
                             <td>
                                 <p id="sprite_fusee_2" align='center'>Sprite Fusee 2</p>
                             </td>
                         </tr>
                     </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p align='center'><b>Head Moves</b></p>
+                </td>
+                <td>
+                    <p id="head_moves">Head moves not inserted yet.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p align='center'><b>Tail Moves</b></p>
+                </td>
+                <td>
+                    <p id="tail_moves">Tail moves not inserted yet.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p align='center'><b>TM/TR Moves</b></p>
+                </td>
+                <td>
+                    <p id="tmtr_moves">TM/TR moves not inserted yet.</p>
                 </td>
             </tr>
         </table>
@@ -187,7 +231,7 @@
             // here the stats are determined: first is determined the stat multiplier and the amount to be added to each stat, 
             // then each stat with the formula described above, then the correction to fit the 505 BST is applied; 
             // after that the stats are inverted in the case head's Attack is higher than tail's.
-            // then each stat should be printed inside the string buffer 2 and then shown in the website.
+            // then each stat should be printed inside the string buffer2 and then shown in the website.
             bst = 0;
             most = [-1, 255];
             y = (510 - 42 * x) / 6;
@@ -233,6 +277,21 @@
             buffer2 += '<tr><td width=110>' + bst + '</td></tr>';
             document.getElementById("stat_fusion").innerHTML = buffer2;
             document.getElementById("sprite_fusee_2").innerHTML = '<input type="image" src="https://play.pokemonshowdown.com/sprites/ani/' + tail[0].toLowerCase() + '.gif">';
+
+            // here the moves are determined; if a move is a head move and a tail move, it won't be listed as tail, but just as head.
+            var hm, tm, tmtr, buffer3 = {hm: "", tm: "", tmtr: ""};
+            hm = head[13].duplicate();
+            tm = tail[14].difference(hm);
+            tmtr = head[15].union(tail[15]);
+            buffer3[hm] += hm[0];
+            for(var i = 1; i < hm.length; i++){ buffer3[hm] += ", " + hm[i]}
+            document.getElementById("head_moves").innerHTML = buffer3[hm];
+            buffer3[tm] += tm[0];
+            for(var i = 1; i < tm.length; i++){ buffer3[tm] += ", " + tm[i]}
+            document.getElementById("tail_moves").innerHTML = buffer3[tm];
+            buffer3[tmtr] += tmtr[0];
+            for(var i = 1; i < tmtr.length; i++){ buffer3[tmtr] += ", " + tmtr[i]}
+            document.getElementById("tail_moves").innerHTML = buffer3[tmtr];
         }
 
         function fillTable() {
