@@ -20,12 +20,6 @@
             return Math.floor(Math.random() * (+max - +min)) + +min;
         }
 
-        function duplicate(w) {
-            var c = [];
-            for (y of w) { c[c.length] = y; }
-            return c;
-        }
-
         function union(x, y) {
             var obj = {};
             for (var i = x.length - 1; i >= 0; --i)
