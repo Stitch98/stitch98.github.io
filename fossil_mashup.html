@@ -276,7 +276,8 @@
             }
             buffer2 += '<tr><td width=110>' + bst + '</td></tr>';
             document.getElementById("stat_fusion").innerHTML = buffer2;
-            document.getElementById("sprite_fusee_2").innerHTML = '<input type="image" src="https://play.pokemonshowdown.com/sprites/ani/' + tail[0].toLowerCase() + '.gif">';
+            if(h != t) document.getElementById("sprite_fusee_2").innerHTML = '<input type="image" src="https://play.pokemonshowdown.com/sprites/ani-back/' + tail[0].toLowerCase() + '.gif">';
+            else document.getElementById("sprite_fusee_2").innerHTML = '<input type="image" src="https://play.pokemonshowdown.com/sprites/ani-back/' + head[0].toLowerCase() + '.gif">'
 
             // here the moves are determined; if a move is a head move and a tail move, it won't be listed as tail, but just as head.
             var hm, tm, tmtr, buffer3 = { hm: "", tm: "", tmtr: "" };
