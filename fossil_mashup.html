@@ -286,13 +286,13 @@
                 buffer3["hm"] = hm[0];
                 for (var i = 1; i < hm.length; i++) { buffer3["hm"] += ", " + hm[i] }
                 document.getElementById("head_moves").innerHTML = buffer3["hm"];
-            } else document.getElementById("head_moves").innerHTML = "Head moves not inserted yet.";
+            } else document.getElementById("head_moves").innerHTML = "Head moves not inserted yet for " + head[0] + ". ";
             if (tail.length > 14) {
                 tm = tail[14];
                 buffer3["tm"] = tm[0];
                 for (var i = 1; i < tm.length; i++) { buffer3["tm"] += ", " + tm[i] }
                 document.getElementById("tail_moves").innerHTML = buffer3["tm"];
-            } else document.getElementById("tail_moves").innerHTML = "Tail moves not inserted yet."
+            } else document.getElementById("tail_moves").innerHTML = "Tail moves not inserted yet for " + tail[0] + ". ";
             if (head.length > 15 || tail.length > 15) {
                 if(head.length > 15 && tail.length > 15) tmtr = union(head[15], tail[15]);
                 else if(head.length > 15) tmtr = head[15];
@@ -300,7 +300,7 @@
                 buffer3["tmtr"] = tmtr[0];
                 for (var i = 1; i < tmtr.length; i++) { buffer3["tmtr"] += ", " + tmtr[i] }
                 document.getElementById("tmtr_moves").innerHTML = buffer3["tmtr"];
-            } else document.getElementById("tmtr_moves").innerHTML = "TM/TR moves not inserted yet."
+            } else document.getElementById("tmtr_moves").innerHTML = "TM/TR moves not inserted yet neither for " + head[0] + " nor " + tail[0] + ". ";
         }
 
         function fillTable() {
