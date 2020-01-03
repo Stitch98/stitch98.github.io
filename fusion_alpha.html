@@ -6,14 +6,6 @@
     <script src="/showdown/pokedex.js"></script>
     <!--<script src="https://stitch98.github.io/showdown/learnsets.js"></script>-->
     <script>
-        function addItems (list, container) {
-            list.forEach(function(item){
-            const option = document.createElement('option');
-            option.setAttribute('value', item);
-            container.appendChild(option);
-            });
-        }
-
         function addOptions (list, paragraph, select, valuetotext){
             document.getElementById(paragraph).innerHTML = "<select id=" + select + ">";
             list.forEach(t => document.getElementById(paragraph).innerHTML += '<option value="' + t + '">' + valuetotext(t) + '</option>');
@@ -28,8 +20,6 @@
             }
             return false;
         }
-
-        addItems(BattlePokedex.map(item => { return item["species"] }), document.getElementById("pokenames"));
     </script>
 </head>
 <body>
@@ -46,9 +36,9 @@
                 <label for="fusee2">Select a Pok&eacute;mon</label>
                 <input id="fusee2" oninput="showData()" list="pokenames">
             </td>
-            <datalist id="pokenames"></datalist>
         </tr>
     </table>
+    <datalist id="pokenames"></datalist>
 </body>
 <script>
     var fusee1, fusee2, rawbst, bst, newTable, eggroup;
@@ -56,11 +46,12 @@
     var bonuses = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
     var defTable = document.getElementById("datatable").innerHTML;
 
+    Object.keys(BattlePokedex).forEach(t => { document.getElementById("pokenames").innerHTML += '<option value="' + t + '"> </option>'; })
     function showData(){
         fusee1 = document.getElementById("fusee1").value;
         fusee2 = document.getElementById("fusee2").value; 
         if(fusee1 != null && fusee2 != null){
-            if(fusee1.localeCompare(fusee2) == 0) alert("Please, select 2 different Pokémon.");
+            if(fusee1 != '' && fusee2 != '' && fusee1.localeCompare(fusee2) == 0) alert("Please, select 2 different Pokémon.");
             else {
                 if( BattlePokedex[fusee1]["eggGroups"].includes("Undiscovered") || 
                     BattlePokedex[fusee2]["eggGroups"].includes("Undiscovered") || 
