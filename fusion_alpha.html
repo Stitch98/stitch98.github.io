@@ -3,7 +3,6 @@
 
 <head>
     <title>Fusion Generator (for Fusion Alpha/Evolution)</title>
-    <script src="/showdown/pokedex.js"></script>
     <!--<script src="https://stitch98.github.io/showdown/learnsets.js"></script>-->
     <script>
         function addOptions (list, paragraph, select, valuetotext){
@@ -40,13 +39,14 @@
     </table>
     <datalist id="pokenames"></datalist>
 </body>
+<script src="https://stitch98.github.io/showdown/pokedex.js"></script>
 <script>
     var fusee1, fusee2, rawbst, bst, newTable, eggroup;
     var rawstats = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
     var bonuses = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
     var defTable = document.getElementById("datatable").innerHTML;
 
-    Object.keys(BattlePokedex).forEach(t => { document.getElementById("pokenames").innerHTML += '<option value="' + t + '"> </option>'; })
+    BattlePokedex.forEach(t => { document.getElementById("pokenames").innerHTML += '<option value="' + t['species'] + '"> </option>'; })
     function showData(){
         fusee1 = document.getElementById("fusee1").value;
         fusee2 = document.getElementById("fusee2").value; 
