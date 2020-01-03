@@ -2,9 +2,183 @@
 <html>
 
 <head>
+    <title>Fusion Generator (for Fusion Alpha/Evolution)</title>
+    <script src="https://stitch98.github.io/showdown/pokedex.js"></script>
+    <!--<script src="https://stitch98.github.io/showdown/learnsets.js"></script>-->
+    <script>
+        function addItems (list, container) {
+            list.forEach(function(item){
+            const option = document.createElement('option');
+            option.setAttribute('value', item);
+            container.appendChild(option);
+            });
+        }
 
+        function addOptions (list, paragraph, select, valuetotext){
+            document.getElementById(paragraph).innerHTML = "<select id=" + select + ">";
+            list.forEach(t => document.getElementById(paragraph).innerHTML += '<option value="' + t + '">' + valuetotext(t) + '</option>');
+            document.getElementById(paragraph).innerHTML += "</select>";
+        }
+
+        function intersection(a, b){
+            for(x in a){
+                for(y in b){
+                    if(x.localeCompare(y) == 0) return x;
+                }
+            }
+            return false;
+        }
+
+        addItems(BattlePokedex.map(item => { return item["species"] }), document.getElementById("pokenames"));
+    </script>
 </head>
 <body>
-
+    <table id="datatable" border=2>
+        <tr>
+            <td><b><h2>Pok&eacute;mon Fusee 1</h2></b></td><td><b><h2>Pok&eacute;mon Fusee 2</h2></b></td>
+        </tr>
+        <tr>
+            <td>
+                <label for="fusee1">Select a Pok&eacute;mon</label>
+                <input id="fusee1" oninput="showData()" list="pokenames">
+            </td>
+            <td>
+                <label for="fusee2">Select a Pok&eacute;mon</label>
+                <input id="fusee2" oninput="showData()" list="pokenames">
+            </td>
+            <datalist id="pokenames"></datalist>
+        </tr>
+    </table>
 </body>
+<script>
+    var fusee1, fusee2, rawbst, bst, newTable, eggroup;
+    var rawstats = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
+    var bonuses = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
+    var defTable = document.getElementById("datatable").innerHTML;
+
+    function showData(){
+        fusee1 = document.getElementById("fusee1").value;
+        fusee2 = document.getElementById("fusee2").value; 
+        if(fusee1 != NULL && fusee2 != NULL){
+            if(fusee1.localeCompare(fusee2) == 0) alert("Please, select 2 different Pok&eacute;mon.");
+            else {
+                if( BattlePokedex[fusee1]["eggGroups"].includes("Undiscovered") || 
+                    BattlePokedex[fusee2]["eggGroups"].includes("Undiscovered") || 
+                    (eggroup = intersection(BattlePokedex[fusee1]["eggGroups"], BattlePokedex[fusee1]["eggGroups"])) == false){
+                    eggroup = 'DNA';
+                }
+                document.getElementById("datatable").innerHTML = defTable + 
+                '<tr>' +
+                    '<td>Name: </td><td><input type="text" id="fusionname"></td>'
+                '</tr>' +
+                '<tr>' +
+                    '<td>Egg Group: </td><td>' + eggroup + '</td>'
+                '</tr>' +
+                '<tr>' +
+                    '<td id="types1">Type</td><td id="types2">Type</td>' +
+                '</tr>' +
+                '<tr>' + 
+                    '<td id="abilities1">Ability1</td><td id="abilities2">Ability2</td>' +
+                '</tr>' +
+                '<tr>' +
+                    '<td>New Ability Name:</td><td><input type="text" id="ability" size=50 value="Name..."> </td>' +
+                '</tr>' +
+                '<tr>' +
+                    '<td>New Ability Description:</td><td><input type="text" id="abilitydesc" size=300 value="Descrpition..."> </td>' +
+                '</tr>' +
+                '<tr>' + 
+                    '<td id="rawstats">Raw Stats</td>' +
+                    '<td>' +
+                        '<table border=1>';
+                for(k in Object.keys(rawstats)){
+                    document.getElementById("datatable").innerHTML += '<tr>' +
+                                '<td><input type="range" id="' + k + 'b" oninput="update(\'' + k +'\')" min="0" max="20"></td>' +
+                                '<td id="' + k + '">' + k.toUpperCase() + ' Bonus</td>' +
+                            '</tr>';
+                }
+                document.getElementById("datatable").innerHTML += '<tr>' +
+                                '<td id="checkbonus">Too Much Bonus</td><td id="bstb">BST Bonus</td>' +
+                        '</table>' +
+                    '</td>' +
+                '</tr>' +
+                '<tr>' +
+                    '<td><textarea id="fusion" rows="50" cols = "100" value="(Optional)"></textarea></td>' +
+                '</tr>' +
+                '<tr>' +
+                    '<td><button onclick="genFusion()">Generate</button></td>' +
+                    '<td><button>Randomize (doesn\'t work yet)</button></td>' +
+                '</tr>';
+                
+                addOptions(BattlePokedex[fusee1]["types"], "types1", "type1", (t => { return '[IMG]https://play.pokemonshowdown.com/sprites/types/' + t + '.png[/IMG]'; }));
+                addOptions(BattlePokedex[fusee2]["types"], "types2", "type2", (t => { return '[IMG]https://play.pokemonshowdown.com/sprites/types/' + t + '.png[/IMG]'; }));
+                addOptions(BattlePokedex[fusee1]["abilities"], "abilites1", "ability1", (t => {return t; }));
+                addOptions(BattlePokedex[fusee2]["abilities"], "abilites2", "ability2", (t => {return t; }));
+                rawbst = 0;
+                for(let i = 0; i < 6; i++){
+                    rawstats[i] = Math.floor((BattlePokedex[fusee1]['baseStats'][i] + BattlePokedex[fusee2]['baseStats'][i]) / 2);
+                    rawbst += rawstats[i];
+                }
+                document.getElementById("rawstats").innerHTML = '<table border=1>';
+                for(k in Object.keys(rawstats)){
+                    document.getElementById("rawstats").innerHTML += '<tr>' +
+                        '<td>' + k.toUpperCase() + '</td><td>' + rawstats[k] + '</td>' +
+                    '</tr>';
+                }
+                document.getElementById("rawstats").innerHTML += '<tr>' +
+                        '<td>BST</td><td>' + rawbst + '</td>' +
+                    '</tr>' +
+                '</table>';
+                newTable = document.getElementById("datatable").innerHTML;
+            }
+        }
+    }
+
+    function genFusion(){
+        let type1 = document.getElementById('type1').value;
+        let type2 = document.getElementById('type2').value;
+        let keys, fusion = '';
+        document.getElementById("datatable").innerHTML = newTable + "<textarea id='fusion' rows='50' cols = '100'></textarea>";
+        fusion = '[B]DNA Donors/ Parents[/B]: '+ fusee1 + ' / ' + fusee2 + '\n' +
+        '[B]Shared Egg Group[/B]:' + eggroup + '\n' +
+        '[B]Offspring Name[/B]: ' + document.getElementById("fusionname").value + '\n' +
+        '[B]New Types:[/B] [B]New Types:[/B] [IMG]https://play.pokemonshowdown.com/sprites/types/' + type1 + '.png[/IMG]' +
+        ((type1.localeCompare(type2) != 0) ? ('.png[/IMG] [IMG]https://play.pokemonshowdown.com/sprites/types/' + type2 + '.png[/IMG]') : ('')) + '\n' +
+        '[B]New Base Stats[/B]:';
+        rawstats.forEach(s => { fusion += s + ' / '; });
+        fusion += '[BST: ' + bst + '] (';
+        keys = Object.keys(rawstats).map(s => { return s.charAt(0).toUpperCase() + s.slice(1); });
+        for(let i = 0; i < bonuses.length; i++){
+            fusion += '+' + bonuses[i] + ' ' + keys[i] + ((i == bonuses.length - 1) ? ('') : (' / '));
+        }
+        fusion += ')';
+        fusion += '[B]New Ability and Desc[/B]: ' + document.getElementById("ability").value + 
+            '(' + document.getElementById("ability1").value + 
+            ' + ' + document.getElementById("ability2").value + 
+            ') - [I]' + document.getElementById("abilitydesc") + "[/I]. \n";
+        '[B]Notable Moves[/B]: ' + '(Please, write them by hand, learnsets are not implemented yet)' + '\n' +
+        '[B]Role Identification[/B]: ';
+        document.getElementById("fusion").innerHTML = fusion;
+    }
+
+    function update(p){
+        let n, bstb = 0;
+        let b = document.getElementById(p + "b").value;
+        document.getElementById(p).innerHTML = b;
+        bstb = 0;
+        for(k in Object.keys(rawstats)){
+            bonuses[k] = document.getElementById(k + "b").value;
+            bstb += bonuses[k];
+        }
+        document.getElementById("bstb").innerHTML = bstb;
+        if(bstb > 40){
+            document.getElementById("checkbonus").style = "color: white background-color:red";
+            document.getElementById("checkbonus").innerHTML = "7.8/10 Too Much Bonus";
+        } else {
+            document.getElementById("checkbonus").style = "color: white background-color:green";
+            document.getElementById("checkbonus").innerHTML = "Correct";
+        }
+        bst = rawbst + bstb;
+    }
+
+</script>
 </html>
