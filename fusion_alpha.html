@@ -59,7 +59,7 @@
     function showData(){
         fusee1 = document.getElementById("fusee1").value;
         fusee2 = document.getElementById("fusee2").value; 
-        if(fusee1 != NULL && fusee2 != NULL){
+        if(fusee1 != null && fusee2 != null){
             if(fusee1.localeCompare(fusee2) == 0) alert("Please, select 2 different Pok&eacute;mon.");
             else {
                 if( BattlePokedex[fusee1]["eggGroups"].includes("Undiscovered") || 
