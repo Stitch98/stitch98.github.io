@@ -3,7 +3,7 @@
 
 <head>
     <title>Fusion Generator (for Fusion Alpha/Evolution)</title>
-    <script src="https://stitch98.github.io/showdown/pokedex.js"></script>
+    <script src="/showdown/pokedex.js"></script>
     <!--<script src="https://stitch98.github.io/showdown/learnsets.js"></script>-->
     <script>
         function addItems (list, container) {
@@ -60,7 +60,7 @@
         fusee1 = document.getElementById("fusee1").value;
         fusee2 = document.getElementById("fusee2").value; 
         if(fusee1 != null && fusee2 != null){
-            if(fusee1.localeCompare(fusee2) == 0) alert("Please, select 2 different Pok&eacute;mon.");
+            if(fusee1.localeCompare(fusee2) == 0) alert("Please, select 2 different Pokémon.");
             else {
                 if( BattlePokedex[fusee1]["eggGroups"].includes("Undiscovered") || 
                     BattlePokedex[fusee2]["eggGroups"].includes("Undiscovered") || 
