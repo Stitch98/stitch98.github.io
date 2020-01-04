@@ -45,9 +45,10 @@
     var rawstats = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
     var bonuses = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
     var defTable = document.getElementById("datatable").innerHTML;
+    let BPkeys = Object.keys(BattlePokedex);
 
     for(let x, i = 0; i < BattlePokedex.length; i++) {
-        x = BattlePokedex[i];
+        x = BattlePokedex[BPkeys[i]];
         document.getElementById("pokenames").innerHTML += '<option value="' + x.species + '"> </option>'; 
     }
     function showData(){
