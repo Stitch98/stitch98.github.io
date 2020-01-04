@@ -45,10 +45,10 @@
     var rawstats = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
     var bonuses = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
     var defTable = document.getElementById("datatable").innerHTML;
-    let x;
 
-    for(let i = 0; i < BattlePokedex.length; i++) {
-        document.getElementById("pokenames").innerHTML += '<option value="' + BattlePokedex[i].species + '"> </option>'; 
+    for(let x, i = 0; i < BattlePokedex.length; i++) {
+        x = BattlePokedex[i];
+        document.getElementById("pokenames").innerHTML += '<option value="' + x.species + '"> </option>'; 
     }
     function showData(){
         fusee1 = document.getElementById("fusee1").value;
