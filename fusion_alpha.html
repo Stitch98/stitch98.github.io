@@ -41,7 +41,7 @@
 </body>
 <script src="https://stitch98.github.io/showdown/pokedex.js"></script>
 <script>
-    var fusee1, fusee2, rawbst, bst, newTable, eggroup;
+    var fusee1, fusee2, rawbst, bst, eggroup, newTable;
     var rawstats = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
     var bonuses = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
     var defTable = document.getElementById("datatable").innerHTML;
@@ -129,7 +129,7 @@
     function genFusion(){
         let type1 = document.getElementById('type1').value;
         let type2 = document.getElementById('type2').value;
-        let keys, fusion = '';
+        let keys, fusion = '', b;
         document.getElementById("datatable").innerHTML = newTable + "<textarea id='fusion' rows='50' cols = '100'></textarea>";
         fusion = '[B]DNA Donors/ Parents[/B]: '+ fusee1 + ' / ' + fusee2 + '\n' +
         '[B]Shared Egg Group[/B]:' + eggroup + '\n' +
@@ -137,7 +137,10 @@
         '[B]New Types:[/B] [B]New Types:[/B] [IMG]https://play.pokemonshowdown.com/sprites/types/' + type1 + '.png[/IMG]' +
         ((type1.localeCompare(type2) != 0) ? ('.png[/IMG] [IMG]https://play.pokemonshowdown.com/sprites/types/' + type2 + '.png[/IMG]') : ('')) + '\n' +
         '[B]New Base Stats[/B]:';
-        rawstats.forEach(s => { fusion += s + ' / '; });
+        for(let i = 0; i < rawstats.length; i++) { 
+            b = rawstats[i] + bonuses[i];
+            fusion += b + ' / '; 
+        }
         fusion += '[BST: ' + bst + '] (';
         keys = Object.keys(rawstats).map(s => { return s.charAt(0).toUpperCase() + s.slice(1); });
         for(let i = 0; i < bonuses.length; i++){
