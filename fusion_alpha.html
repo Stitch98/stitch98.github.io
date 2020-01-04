@@ -15180,9 +15180,10 @@
     var rawstats = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
     var bonuses = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
     var defTable = document.getElementById("datatable").innerHTML;
+    let BPkeys = Object.keys(BattlePokedex);
 
-    for(x in BattlePokedex) {
-        document.getElementById("pokenames").innerHTML += '<option value="' + x[1] + '"> </option>'; 
+    for(let i = 0; i < BattlePokedex.length; i++) {
+        document.getElementById("pokenames").innerHTML += '<option value="' + BattlePokedex[i]['species'] + '"> </option>'; 
     }
 
     function showData(){
