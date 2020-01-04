@@ -15182,7 +15182,7 @@
     var defTable = document.getElementById("datatable").innerHTML;
 
     for(x in BattlePokedex) {
-        document.getElementById("pokenames").innerHTML += '<option value="' + x.species + '"> </option>'; 
+        document.getElementById("pokenames").innerHTML += '<option value="' + x['species'] + '"> </option>'; 
     }
 
     function showData(){
