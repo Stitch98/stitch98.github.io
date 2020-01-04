@@ -49,7 +49,7 @@
 
     for(p in BattlePokedex) {
         p = {};
-        document.getElementById("pokenames").innerHTML += '<option value="' + p.species + '"> </option>'; 
+        document.getElementById("pokenames").innerHTML += '<option value="' + p['species'] + '"> </option>'; 
     }
     function showData(){
         fusee1 = document.getElementById("fusee1").value;
