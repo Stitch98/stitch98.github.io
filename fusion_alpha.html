@@ -46,7 +46,9 @@
     var bonuses = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
     var defTable = document.getElementById("datatable").innerHTML;
 
-    BattlePokedex.forEach(t => { document.getElementById("pokenames").innerHTML += '<option value="' + t[1] + '"> </option>'; })
+    for(t in BattlePokedex) { 
+        document.getElementById("pokenames").innerHTML += '<option value="' + t[1] + '"> </option>'; 
+    }
     function showData(){
         fusee1 = document.getElementById("fusee1").value;
         fusee2 = document.getElementById("fusee2").value; 
@@ -93,7 +95,7 @@
                     '</td>' +
                 '</tr>' +
                 '<tr>' +
-                    '<td><textarea id="fusion" rows="12" cols = "50" value="(Optional)"></textarea></td>' +
+                    '<td><textarea id="fusion" rows="12" cols = "50" value="Fusion"></textarea></td>' +
                 '</tr>' +
                 '<tr>' +
                     '<td><button onclick="genFusion()">Generate</button></td>' +
