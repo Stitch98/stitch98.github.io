@@ -47,7 +47,7 @@
     var defTable = document.getElementById("datatable").innerHTML;
 
     for(t in BattlePokedex) { 
-        document.getElementById("pokenames").innerHTML += '<option value="' + t[1] + '"> </option>'; 
+        document.getElementById("pokenames").innerHTML += '<option value="' + t["species"] + '"> </option>'; 
     }
     function showData(){
         fusee1 = document.getElementById("fusee1").value;
