@@ -48,6 +48,7 @@
     let x;
 
     for(p in BattlePokedex) {
+        p = {};
         document.getElementById("pokenames").innerHTML += '<option value="' + p.species + '"> </option>'; 
     }
     function showData(){
