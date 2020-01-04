@@ -15183,7 +15183,7 @@
     let BPkeys = Object.keys(BattlePokedex);
 
     for(let i = 0; i < BattlePokedex.length; i++) {
-        document.getElementById("pokenames").innerHTML += '<option value="' + BattlePokedex[i]['species'] + '"> </option>'; 
+        document.getElementById("pokenames").innerHTML += '<option value="' + BattlePokedex[BPkeys[i]]['species'] + '"> </option>'; 
     }
 
     function showData(){
