@@ -311,7 +311,7 @@
                 else if(head.length > 15) tmtr = head[15];
                 else if(tail.length > 15) tmtr = tail[15];
                 buffer3["tmtr"] = tmtr[0];
-                for (let i = 1; i < tmtr.length; i++) { buffer3["tmtr"] += ", " + tmtr[i] }
+                for (let i = 1; i < tmtr.length; i++) { buffer3["tmtr"] += ", " + tmtr[i]; }
                 document.getElementById("tmtr_moves").innerHTML = buffer3["tmtr"];
             } else document.getElementById("tmtr_moves").innerHTML = "TM/TR moves not inserted yet neither for " + head[0] + " nor " + tail[0] + ". ";
         }
