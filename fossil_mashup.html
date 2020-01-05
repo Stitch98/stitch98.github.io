@@ -9,7 +9,7 @@
         }
 
         function randInt(a, b) {
-            var min, max;
+            let min, max;
             if (a > b) {
                 min = b;
                 max = a;
@@ -21,7 +21,7 @@
         }
 
         function union(x, y) {
-            var obj = {};
+            let obj = {};
             for (var i = x.length - 1; i >= 0; --i)
                 obj[x[i]] = x[i];
             for (var i = y.length - 1; i >= 0; --i)
@@ -35,8 +35,11 @@
         }
 
         //here I declare the fossil characteristics (name, number of letters in the tail part, type, primary ability, secondary ability - if present - and hidden ability, then the stat boost values for each stat, and finally the Attack of the original Pokémon - to determine which one is the offensive among the fusees).
-        var omastar = new Array("Omastar", 3, "Water", "Swift Swim", "Shell Armor", "Weak Armor", 3, 2, 6, 5, 3, 1, 60),
-            kabutops = new Array("Kabutops", 4, "Water", "Swift Swim", "Battle Armor", "Weak Armor", 1, 6, 5, 2, 3, 4, 115),
+        var omastar = new Array("Omastar", 3, "Water", "Swift Swim", "Shell Armor", "Weak Armor", 3, 2, 6, 5, 3, 1, 60,
+                ["Bite", "Crunch", "Water Gun", "Brine", "Hydro Pump", "Knock Off"]),
+            kabutops = new Array("Kabutops", 4, "Water", "Swift Swim", "Battle Armor", "Weak Armor", 1, 6, 5, 2, 3, 4, 115,
+                ["Night Slash", "Slash", "Aqua Jet", "Liquidation", "Feint", "Knock Off"], ["Mega Drain", "Mud Shot", "Absorb", "Harden", "Endure", "Sand Attack"],
+                ["Waterfall", "Surf", "X-Scissor", "Brick Break", "Scald", "Ice Beam", "Smack Down", "Aerial Ace", "Swords Dance", "Thief"]),
             aerodactyl = new Array("Aerodactyl", 4, "Flying", "Rock Head", "Pressure", "Unnerve", 4, 5, 1, 2, 3, 6, 105,
                 ["Crunch", "Defog", "Roost", "Tailwind", "Whirlwind", "Wing Attack"], ["Agility", "Aqua Tail", "Brutal Swing", "Bulldoze", "Iron Tail", "Take Down"],
                 ["Brave Bird", "Dragon Pulse", "Earthquake", "Fire Fang", "Flamethrower", "Hurricane", "Ice Fang", "Iron Head", "Psychic Fangs", "Thunder Fang"]),
@@ -203,13 +206,13 @@
     <script>
         function createFusion(h, t, x) {
             // Up there, where 'id = ' appears, should be written the characteristics of the fusions, that are filled down here.
-            var name, val, bst, most, y;
-            var head = row[h];
-            var tail = row[t];
-            var buffer1 = "";
-            var buffer2 = "";
+            let name, val, bst, most, y;
+            let head = row[h];
+            let tail = row[t];
+            let buffer1 = "";
+            let buffer2 = "";
 
-            // here the name is determined (you can see how the second entry is used), and then I try to fill the table.
+            // here the name is determined (you can see how the second entry is used), and then I fill the table.
             if (h == t) {
                 name = head[0];
                 buffer1 += "<p> " + name + "</p> <p> -" + head[0].substr(head[1], head[0].length - 1) + "</p> <p> " + head[0].substr(0, head[1]) + "-</p>";
@@ -226,7 +229,7 @@
             buffer1 += "</p>";
 
             // abilities are determined now, you can see the if-then-else mechanism behind secondary ability determination.
-            var primary, hidden, secondary;
+            let primary, hidden, secondary;
             primary = head[3];
             hidden = (tail[5] != primary) ? (tail[5]) : (tail[3]);
             if (head[3] == head[5] || tail[3] == tail[5]) secondary = '---';
@@ -290,17 +293,17 @@
             else document.getElementById("sprite_fusee_2").innerHTML = '<input type="image" src="https://play.pokemonshowdown.com/sprites/ani-back/' + head[0].toLowerCase() + '.gif">'
 
             // here the moves are determined; if a move is a head move and a tail move, it won't be listed as tail, but just as head.
-            var hm, tm, tmtr, buffer3 = { hm: "", tm: "", tmtr: "" };
+            let hm, tm, tmtr, buffer3 = { hm: "", tm: "", tmtr: "" };
             if (head.length > 13) {
                 hm = head[13];
                 buffer3["hm"] = hm[0];
-                for (var i = 1; i < hm.length; i++) { buffer3["hm"] += ", " + hm[i] }
+                for (let i = 1; i < hm.length; i++) { buffer3["hm"] += ", " + hm[i] }
                 document.getElementById("head_moves").innerHTML = buffer3["hm"];
             } else document.getElementById("head_moves").innerHTML = "Head moves not inserted yet for " + head[0] + ". ";
             if (tail.length > 14) {
                 tm = tail[14];
                 buffer3["tm"] = tm[0];
-                for (var i = 1; i < tm.length; i++) { buffer3["tm"] += ", " + tm[i] }
+                for (let i = 1; i < tm.length; i++) { buffer3["tm"] += ", " + tm[i] }
                 document.getElementById("tail_moves").innerHTML = buffer3["tm"];
             } else document.getElementById("tail_moves").innerHTML = "Tail moves not inserted yet for " + tail[0] + ". ";
             if (head.length > 15 || tail.length > 15) {
@@ -308,13 +311,13 @@
                 else if(head.length > 15) tmtr = head[15];
                 else if(tail.length > 15) tmtr = tail[15];
                 buffer3["tmtr"] = tmtr[0];
-                for (var i = 1; i < tmtr.length; i++) { buffer3["tmtr"] += ", " + tmtr[i] }
+                for (let i = 1; i < tmtr.length; i++) { buffer3["tmtr"] += ", " + tmtr[i] }
                 document.getElementById("tmtr_moves").innerHTML = buffer3["tmtr"];
             } else document.getElementById("tmtr_moves").innerHTML = "TM/TR moves not inserted yet neither for " + head[0] + " nor " + tail[0] + ". ";
         }
 
         function fillTable() {
-            var head, tail, x;
+            let x;
 
             h = document.getElementById("head").value;
             t = document.getElementById("tail").value;
@@ -326,7 +329,7 @@
         }
 
         function swap() {
-            var tmp = document.getElementById("head").value;
+            let tmp = document.getElementById("head").value;
             document.getElementById("head").value = document.getElementById("tail").value;
             document.getElementById("tail").value = tmp;
             fillTable();
