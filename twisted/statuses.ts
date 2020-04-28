@@ -1,4 +1,5 @@
 export const BattleStatuses: {[k: string]: ModdedPureEffectData} = {
+    inherit: true,
     twist: {
         name: 'Twist',
 		id: 'twist',
@@ -6,13 +7,32 @@ export const BattleStatuses: {[k: string]: ModdedPureEffectData} = {
         duration: 0,
         onStart(pokemon) {
             this.twisted = pokemon.isTwist;
-            pokemon.types[0] = this.getTwistedType(pokemon.types[0], pokemon.isTwist);
-            pokemon.types[1] = this.getTwistedType(pokemon.types[1], pokemon.isTwist);
+            var twistName;
+            switch(this.twisted){
+                case 'L':
+                    twistName = 'Left Twist';
+                    break;
+                case 'R':
+                    twistName = 'Right Twist';
+                    break;
+                case '0':
+                default: 
+                    pokemon.removeVolatile('twist'); return;
+                    
+            }
+            this.add('-start', pokemon,  twistName);
+			if(pokemon.isTwist != '0') this.add('-formechange', pokemon, true);
             const side = pokemon.side;
             for (const ally of side.pokemon) {
                 if(ally.isTwist != '0') ally.isTwist = '0';
             }
         },
+        onTypePriority: 1,
+		onType(types, pokemon) {
+			if (pokemon.transformed || !pokemon.volatiles['twist'] && this.gen >= 8) return types;
+			let twistedTypes: string[] | undefined = [this.getTwistedType(types[0], pokemon.isTwist), this.getTwistedType(types[1], pokemon.isTwist)];
+			return twistedTypes;
+		},
         onBeforeMove(move, pokemon){
             if(pokemon.volatiles['twist'] && pokemon.type === move.type){
                 move.name = this.TwistedTypes[move.type].prefix + ' ' + move.name;
@@ -33,6 +53,7 @@ export const BattleStatuses: {[k: string]: ModdedPureEffectData} = {
         },
         onEnd(pokemon) {
             this.add('-end', pokemon, 'Twist');
+            if(pokemon.isTwist != '0') this.add('-formechange', pokemon, pokemon.species.name);
             pokemon.types = pokemon.baseSpecies.types;
             pokemon.side.twist = false;
 		},
