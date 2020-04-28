@@ -77,7 +77,7 @@ export const BattleScripts: ModdedBattleScriptsData = {
         const side = pokemon.side;
         var i = 0;
         if (side.twist) return false;
-        side.twist = true;
+        side.twist = true; // aa
         for (const ally of side.pokemon) {
             if (i % 2 == 0) {
                 ally.isTwist = 'L';
