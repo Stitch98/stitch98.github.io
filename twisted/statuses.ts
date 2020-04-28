@@ -27,7 +27,7 @@ export const BattleStatuses: { [k: string]: ModdedPureEffectData } = {
                 if (ally.isTwist != '0') ally.isTwist = '0';
             }
         },
-        onTypePriority: 1,
+        onTypePriority: 2,
         onType(types, pokemon) {
             if (pokemon.transformed || !pokemon.volatiles['twist'] && this.gen >= 8) return types;
             let twistedTypes: string[] | undefined = [this.getTwistedType(types[0], pokemon.isTwist), this.getTwistedType(types[1], pokemon.isTwist)];
