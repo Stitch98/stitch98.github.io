@@ -8,7 +8,7 @@ export const BattleScripts: ModdedBattleScriptsData = {
 		if (!pokemon.hp) return false;
 		pokemon.isStarted = true;
 		if (!pokemon.fainted) {
-            if(pokemon.isTwist != '0') pokemon.addVolatile('twist');
+            if(pokemon.isTwist != '0') pokemon.addVolatile('twist'); // here is when twist happens
 			this.singleEvent('Start', pokemon.getAbility(), pokemon.abilityData, pokemon);
 			pokemon.abilityOrder = this.abilityOrder++;
 			this.singleEvent('Start', pokemon.getItem(), pokemon.itemData, pokemon);
