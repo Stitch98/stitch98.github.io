@@ -37,37 +37,37 @@
         //here I declare the fossil characteristics (name, number of letters in the tail part, type, primary ability, secondary ability - if present - and hidden ability, then the stat boost values for each stat, and finally the Attack of the original Pokémon - to determine which one is the offensive among the fusees).
         var omastar = new Array("Omastar", 3, "Water", "Swift Swim", "Shell Armor", "Weak Armor", 3, 2, 6, 5, 3, 1, 60,
                 ["Spikes", "Crunch", "Toxic Spikes", "Haze", "Hydro Pump", "Knock Off"], ["Shell Smash, Rock Blast, Brine, Withdraw, Spike Cannon", "Rollout"],
-                ["Ice Beam", "Blizzard", "Scald", "Surf", "Waterfall", "Gyro Ball", "Whirlpool", "Rain Dance", "Thief", "Swagger"]),
+                ["Ice Beam", "Blizzard", "Scald", "Surf", "Waterfall", "Gyro Ball", "Whirlpool", "Rain Dance", "Thief", "Swagger"], 1.0, 35.0),
             kabutops = new Array("Kabutops", 4, "Water", "Swift Swim", "Battle Armor", "Weak Armor", 1, 6, 5, 2, 3, 4, 115,
                 ["Night Slash", "Slash", "Aqua Jet", "Liquidation", "Feint", "Knock Off"], ["Mega Drain", "Mud Shot", "Confuse Ray", "Iron Defense", "Rapid Spin", "Low Kick"],
-                ["Waterfall", "Surf", "X-Scissor", "Brick Break", "Scald", "Ice Beam", "Smack Down", "Aerial Ace", "Swords Dance", "Thief"]),
+                ["Waterfall", "Surf", "X-Scissor", "Brick Break", "Scald", "Ice Beam", "Smack Down", "Aerial Ace", "Swords Dance", "Thief"], 1.3, 40.5),
             aerodactyl = new Array("Aerodactyl", 4, "Flying", "Rock Head", "Pressure", "Unnerve", 4, 5, 1, 2, 3, 6, 105,
                 ["Crunch", "Defog", "Roost", "Tailwind", "Whirlwind", "Wing Attack"], ["Agility", "Aqua Tail", "Brutal Swing", "Bulldoze", "Iron Tail", "Take Down"],
-                ["Brave Bird", "Dragon Pulse", "Earthquake", "Fire Fang", "Flamethrower", "Hurricane", "Ice Fang", "Iron Head", "Psychic Fangs", "Thunder Fang"]),
+                ["Brave Bird", "Dragon Pulse", "Earthquake", "Fire Fang", "Flamethrower", "Hurricane", "Ice Fang", "Iron Head", "Psychic Fangs", "Thunder Fang"], 1.8, 59.0),
             cradily = new Array("Cradily", 3, "Grass", "Suction Cups", "", "Storm Drain", 4, 2, 5, 2, 6, 1, 81,
                 ["Amnesia", "Bind", "Brine", "Pain Split", "Sludge Wave", "Synthesis"], ["Ingrain", "Recover", "Leech Seed", "Spit Up", "Stockpile", "Swallow"],
-                ["Bullet Seed", "Energy Ball", "Giga Drain", "Grass Knot", "Grassy Terrain", "Seed Bomb", "Sludge Bomb", "Solar Beam", "Sunny Day"]),
+                ["Bullet Seed", "Energy Ball", "Giga Drain", "Grass Knot", "Grassy Terrain", "Seed Bomb", "Sludge Bomb", "Solar Beam", "Sunny Day"], 1.5, 60.4),
             armaldo = new Array("Armaldo", 4, "Bug", "Battle Armor", "", "Swift Swim", 3, 6, 5, 2, 4, 1, 125,
                 ["Slash", "Crush Claw", "Aqua Jet", "Metal Claw", "Knock Off", "Liquidation"], ["Low Kick", "Smack Down", "Rock Blast", "Rapid Spin", "Curse", "Stomping Tantrum"],
-                ["Brick Break", "Aerial Ace", "Brutal Swing", "Swords Dance", "X-Scissor", "Flash Cannon", "Swagger", "Bulldoze", "Sandstorm", "Sunny Day"]),
+                ["Brick Break", "Aerial Ace", "Brutal Swing", "Swords Dance", "X-Scissor", "Flash Cannon", "Swagger", "Bulldoze", "Sandstorm", "Rain Dance"], 1.5, 68.2),
             rampardos = new Array("Rampardos", 5, "Rock", "Mold Breaker", "", "Sheer Force", 5, 6, 3, 4, 1, 2, 165,
                 ["Crunch", "Hammer Arm", "Head Smash", "Iron Head", "Scary Face", "Zen Headbutt"], ["Curse", "Dragon Tail", "Iron Tail", "Slam", "Superpower", "Whirlwind"],
-                ["Fire Punch", "Flamethrower", "Focus Blast", "High Horsepower", "Ice Beam", "Ice Punch", "Rock Blast", "Swords Dance", "Thunderbolt", "Thunder Punch"]),
+                ["Fire Punch", "Flamethrower", "Focus Blast", "High Horsepower", "Ice Beam", "Ice Punch", "Rock Blast", "Swords Dance", "Thunderbolt", "Thunder Punch"], 1.6, 102.5),
             bastiodon = new Array("Bastiodon", 6, "Steel", "Sturdy", "", "Soundproof", 4, 3, 6, 2, 5, 1, 52,
                 ["Block", "Counter", "Endure", "Iron Head", "Magic Coat", "Metal Sound"], ["Curse", "Heavy Slam", "Iron Defense", "Iron Tail", "Metal Burst", "Magnet Rise"],
-                ["Avalanche", "Blizzard", "Fire Blast", "Flamethrower", "Ice Beam", "Rock Blast", "Stomping Tantrum", "Taunt", "Thunderbolt", "Thunder"]),
+                ["Avalanche", "Blizzard", "Fire Blast", "Flamethrower", "Ice Beam", "Rock Blast", "Stomping Tantrum", "Taunt", "Thunderbolt", "Thunder"], 1.3, 149.5),
             carracosta = new Array("Carracosta", 5, "Water", "Solid Rock", "Sturdy", "Swift Swim", 3, 6, 5, 4, 2, 1, 108,
                 ["Aqua Jet", "Hydro Pump", "Brine", "Knock Off", "Liquidation", "Wide Guard"], ["Aqua Tail", "Body Slam", "Curse", "Rain Dance", "Shell Smash", "Whirlpool"],
-                ["Blizzard", "Body Press", "Crunch", "Earthquake", "Focus Blast", "Ice Beam", "Scald", "Superpower", "Surf", "Waterfall"]),
+                ["Blizzard", "Body Press", "Crunch", "Earthquake", "Focus Blast", "Ice Beam", "Scald", "Superpower", "Surf", "Waterfall"], 1.2, 81.0),
             archeops = new Array("Archeops", 5, "Flying", "Defeatist", "", "Defeatist", 3, 6, 1, 5, 1, 4, 140,
                 ["Defog", "Head Smash", "Knock Off", "Pluck", "Roost", "Zen Headbutt"], ["Acrobatics", "Aqua Tail, Dragon Tail, Quick Attack, Switcheroo, Thrash"],
-                ["Air Slash", "Brave Bird", "Dragon Claw", "Dragon Pulse", "Earthquake", "Focus Blast", "Hurricane", "Shadow Claw", "Taunt", "U-turn"]),
+                ["Air Slash", "Brave Bird", "Dragon Claw", "Dragon Pulse", "Earthquake", "Focus Blast", "Hurricane", "Shadow Claw", "Taunt", "U-turn"], 1.4, 32.0),
             tyrantrum = new Array("Tyrantrum", 4, "Dragon", "Strong Jaw", "", "Rock Head", 4, 6, 5, 2, 1, 3, 121,
                 ["Head Smash", "Draco Meteor", "Crunch", "Poison Fang", "Charm", "Roar"], ["Dragon Tail", "Iron Tail", "Superpower", "Hone Claws", "Curse", "Block"],
-                ["Dragon Dance", "Dragon Claw", "Dragon Pulse", "Outrage", "Breaking Swipe", "Psychic Fangs", "Fire Fang", "Ice Fang", "Dark Pulse", "Hyper Voice"]),
+                ["Dragon Dance", "Dragon Claw", "Dragon Pulse", "Outrage", "Breaking Swipe", "Psychic Fangs", "Fire Fang", "Ice Fang", "Dark Pulse", "Hyper Voice"], 2.5, 270.0),
             aurorus = new Array("Aurorus", 4, "Ice", "Refrigerate", "", "Snow Warning", 6, 3, 2, 5, 4, 1, 77,
                 ["Avalanche", "Barrier", "Icy Wind", "Light Screen", "Haze", "Encore"], ["Ice Beam", "Freeze Dry", "Thunder Wave", "Discharge", "Nature Power", "Blizzard"],
-                ["Reflect", "Thunderbolt", "Thunder", "Charge Beam", "Dragon Tail", "Frost Breath", "Flash Cannon", "Dark Pulse", "Psychic", "Calm Mind"]),
+                ["Reflect", "Thunderbolt", "Thunder", "Charge Beam", "Dragon Tail", "Frost Breath", "Flash Cannon", "Dark Pulse", "Psychic", "Calm Mind"], 2.7, 225.0),
             row = new Array(omastar, kabutops, aerodactyl, cradily, armaldo, rampardos, bastiodon, carracosta, archeops, tyrantrum, aurorus); 
     </script>
 </head>
@@ -209,7 +209,113 @@
             </tr>
         </table>
     </font>
+    <table border=1 align='left' style='background-color: #ffffff' width=400>
+        <tr>
+            <td>
+                <p id='pokedex'></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p id='learnsets'></p>
+            </td>
+        </tr>
+    </table>
     <script>
+        function generateText(){
+            let buffer = "", buffer2 = "", name = "";
+            let val, bst, most, i = 0;
+            let primary, hidden, secondary;
+            let moves = [""];
+            for(f1 in row){
+                for(f2 in row){
+                    if(f1[0].localeCompare(f2[0]) != 0){
+                        name += f2[0].substr(0, f2[1]) + head[0].substr(f1[1], f1[0].length - 1);
+                        buffer += name.toLocaleLowerCase() + ': {</br>' +
+                                'num: ' + 900 + (i++) + ',</br>' +
+                                'name: "' + name + '",</br>' +
+                                'types: ["' + f1[2] + ((f1[2].localeCompare(f2[2]) != 0)? ( '", "' + f2[2]) :'') + '"],</br>' +
+                                'gender: "N",</br>' +
+                                'baseStats: {';
+                        for (var i = 0; i < 6; i++) {
+                            val[i] = ((f1[6 + i] + f2[6 + i]) * 5 + 50);
+                            bst += val[i];
+                            if (val[i] < most[1]) {
+                                most[0] = i;
+                                most[1] = val[i];
+                            }
+                        }
+
+                        if (bst == 510) {
+                            val[most[0]] -= 5;
+                            bst -= 5;
+                        } else if (bst == 500) {
+                            val[most[0]] += 5;
+                            bst += 5;
+                        } else if (bst == 490) {
+                            val[most[0]] += 15;
+                            bst += 15;
+                        }
+                        if (head[12] > tail[12]) {
+                            tmp = val[1];
+                            val[1] = val[2];
+                            val[2] = tmp;
+                            tmp = val[3];
+                            val[3] = val[4];
+                            val[4] = tmp;
+                        }
+                        
+                        for (let j = 0; j < 6; j++) {
+                            switch(j){
+                                case 0:
+                                    buffer += 'hp:' + val[j] + ', ';
+                                    break;
+                                case 1:
+                                    buffer += 'atk:' + val[j] + ', ';
+                                    break;
+                                case 2:
+                                    buffer += 'def:' + val[j] + ', ';
+                                    break;
+                                case 3:
+                                    buffer += 'spa:' + val[j] + ', ';
+                                    break;
+                                case 4:
+                                    buffer += 'spd:' + val[j] + ', ';
+                                    break;
+                                case 5:
+                                    buffer += 'spe:' + val[j];
+                                    break;
+                                default: break;
+                            }
+                            
+                        }
+
+                        buffer += '},</br>' +
+                                'abilities: {';
+                        primary = head[3];
+                        hidden = (tail[5] != primary) ? (tail[5]) : (tail[3]);
+                        if (head[3] == head[5] || tail[3] == tail[5]) secondary = null;
+                        else if (head[4] != "" && head[4] != primary && head[4] != hidden) secondary = head[4];
+                        else if (tail[4] != "" && tail[4] != primary && tail[4] != hidden) secondary = tail[4];
+                        else if (tail[3] != primary && tail[3] != hidden) secondary = tail[3];
+                        else secondary = null;
+                        buffer += '0: "' + primary + ((secondary == null)? '' : ('", 1: "' + secondary)) + '", H: "' + hidden + '"';
+                        buffer += '},</br>' +
+                                'heightm: '+ (f1[34] / 2 + f2[34] / 2) + ',</br>' +
+                                'weightkg: '+ (f1[35] / 2 + f2[35] / 2) + ',</br>' +
+                                'color: "Gray",</br>' +
+                                'eggGroups: ["Undiscovered"],</br>';
+                        buffer2 += name.toLocaleLowerCase() + ': {</br>' +
+                                'learnset: {';
+                        for(move in f1[14]) buffer2 += move.toLocaleLowerCase() + ': ["8L1"], </br>';
+                        moves = ["Ancient Power", "Earth Power", "Rock Polish", "Rock Slide", "Rock Tomb", "Stealth Rock", "Stone Edge", "Attract", "Facade", "Protect", "Rest", "Round"];
+                        for(move in moves) buffer2 += move.toLocaleLowerCase() + ': ["8L1"], </br>';
+                        buffer2 += ' Snore: [ "8L1" ] </br>} </br> }</br>';
+                    }
+                }
+            }
+        }
+
         function createFusion(h, t, x) {
             // Up there, where 'id = ' appears, should be written the characteristics of the fusions, that are filled down here.
             let name, val, bst, most, y;
