@@ -87,5 +87,8 @@ export const BattleScripts: ModdedBattleScriptsData = {
         }
         pokemon.canMegaEvo = 'Twist'; // in the case it isn't the same value as the one returned by canMegaEvo() function
         return true;
-    }
+    }/* ,
+    onSwitchIn(pokemon){
+        if(pokemon.side.twist && pokemon.isTwisted != '0') pokemon.addVolatile('twist');
+    } */
 };

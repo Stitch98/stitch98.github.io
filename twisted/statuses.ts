@@ -54,7 +54,7 @@ export const BattleStatuses: { [k: string]: ModdedPureEffectData } = {
         onEnd(pokemon) {
             this.add('-end', pokemon, 'Twist');
             if (pokemon.isTwist != '0') this.add('-formechange', pokemon, pokemon.species.name);
-            pokemon.types = pokemon.baseSpecies.types;
+            pokemon.setTypes(pokemon.baseSpecies.getTypes());
             pokemon.side.twist = false;
         },
         twisted: '0',
