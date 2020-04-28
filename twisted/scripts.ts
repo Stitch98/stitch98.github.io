@@ -1,29 +1,7 @@
 export const BattleScripts: ModdedBattleScriptsData = {
-    runSwitch(pokemon: Pokemon) {
-        this.runEvent('Swap', pokemon);
-        this.runEvent('SwitchIn', pokemon);
-        if (this.gen <= 2 && !pokemon.side.faintedThisTurn && pokemon.draggedIn !== this.turn) {
-            this.runEvent('AfterSwitchInSelf', pokemon);
-        }
-        if (!pokemon.hp) return false;
-        pokemon.isStarted = true;
-        if (!pokemon.fainted) {
-            if (pokemon.side.twist && pokemon.isTwist != '0') pokemon.addVolatile('twist'); // here is when twist happens
-            this.singleEvent('Start', pokemon.getAbility(), pokemon.abilityData, pokemon);
-            pokemon.abilityOrder = this.abilityOrder++;
-            this.singleEvent('Start', pokemon.getItem(), pokemon.itemData, pokemon);
-        }
-        if (this.gen === 4) {
-            for (const foeActive of pokemon.side.foe.active) {
-                foeActive.removeVolatile('substitutebroken');
-            }
-        }
-        pokemon.draggedIn = null;
-        return true;
-    },
     pokemon: {
         inherit: true,
-        isTwist: '0' // This field indicates if the Pokémon has to twist left or right
+        isTwist: '0' // This field indicates if the Pokémon has to twist left or right, '0' means it doesnt have to twist
     },
     side: {
         inherit: true,
