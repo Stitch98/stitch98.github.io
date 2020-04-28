@@ -21,17 +21,17 @@ export const BattleStatuses: { [k: string]: ModdedPureEffectData } = {
 
             }
             this.add('-start', pokemon, twistName);
+            var twistTypes = '';
+            twistTypes += this.getTwistedType(pokemon.types[0]);
+            if(pokemon.types.length > 1){
+                twistTypes += '/' + this.getTwistedType(pokemon.types[1]);
+            }
             if (pokemon.isTwist != '0') this.add('-formechange', pokemon, true);
+            pokemon.setType(twistTypes);
             const side = pokemon.side;
             for (const ally of side.pokemon) {
                 if (ally.isTwist != '0') ally.isTwist = '0';
             }
-        },
-        onTypePriority: 2,
-        onType(types, pokemon) {
-            if (pokemon.transformed || !pokemon.volatiles['twist'] && this.gen >= 8) return types;
-            let twistedTypes: string[] | undefined = [this.getTwistedType(types[0], pokemon.isTwist), this.getTwistedType(types[1], pokemon.isTwist)];
-            return twistedTypes;
         },
         onBeforeMove(move, pokemon) {
             if (pokemon.volatiles['twist'] && pokemon.type === move.type) {
