@@ -8,7 +8,7 @@ export const BattleScripts: ModdedBattleScriptsData = {
 		if (!pokemon.hp) return false;
 		pokemon.isStarted = true;
 		if (!pokemon.fainted) {
-            if(pokemon.isTwist != '0') pokemon.addVolatile('twist'); // here is when twist happens
+            if(pokemon.side.twist && pokemon.isTwist != '0') pokemon.addVolatile('twist'); // here is when twist happens
 			this.singleEvent('Start', pokemon.getAbility(), pokemon.abilityData, pokemon);
 			pokemon.abilityOrder = this.abilityOrder++;
 			this.singleEvent('Start', pokemon.getItem(), pokemon.itemData, pokemon);
@@ -67,7 +67,7 @@ export const BattleScripts: ModdedBattleScriptsData = {
                 }
                 break;
             case 'move':
-                // Checking if the Pokémon has to Twist, no need to 
+                // Checking if the Pokémon has to Twist, no need to specify L or R as they where saved inside the Pokémon
                 if(this.twist){
                     return this.emitChoiceError(`Can't pass: You chose to Twist, you have to switch.`);
                 }
@@ -92,9 +92,8 @@ export const BattleScripts: ModdedBattleScriptsData = {
         return (pokemon.side.twist) ? false : 'Twist';
     },
     // This function overwrites the normal functioning of the Mega Evolution, so is run when you tick the megaevolution box
-    // It activates the side.twist attribute that is the checked inside runTwist() function, that has to be put somehow inside the switchIn
-    // But that doesn't seem accessible from this class, from this entire folder tbh; in fact, it is inside the 'sim' folder, under 'sim/battle.ts'
-    // that file cannot be put inside the 'mods' folder, so I don't really know what to do
+    // It activates the side.twist attribute that is checked inside the runSwitch function
+    // and it also sets the value for the isTwist attribute inside pokemon, that I'm assuming is preserved after switch in (like canMegaEvo and canDynamax)
     runMegaEvo(pokemon) {
         if(pokemon.isTwist) return false;
         const side = pokemon.side;
