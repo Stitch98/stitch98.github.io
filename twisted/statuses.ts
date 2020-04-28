@@ -28,11 +28,11 @@ export const BattleStatuses: {[k: string]: ModdedPureEffectData} = {
             }
         },
         onTypePriority: 1,
-		onType(types, pokemon) {
-			if (pokemon.transformed || !pokemon.volatiles['twist'] && this.gen >= 8) return types;
-			let twistedTypes: string[] | undefined = [this.getTwistedType(types[0], pokemon.isTwist), this.getTwistedType(types[1], pokemon.isTwist)];
-			return twistedTypes;
-		},
+        onType(types, pokemon) {
+            if (pokemon.transformed || !pokemon.volatiles['twist'] && this.gen >= 8) return types;
+            let twistedTypes: string[] | undefined = [this.getTwistedType(types[0], pokemon.isTwist), this.getTwistedType(types[1], pokemon.isTwist)];
+            return twistedTypes;
+        },
         onBeforeMove(move, pokemon){
             if(pokemon.volatiles['twist'] && pokemon.type === move.type){
                 move.name = this.TwistedTypes[move.type].prefix + ' ' + move.name;
