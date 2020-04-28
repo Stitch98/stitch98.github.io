@@ -23,7 +23,7 @@ export const BattleStatuses: {[k: string]: ModdedPureEffectData} = {
         onBeforeSwitchOutPriority: -1,
 		onBeforeSwitchOut(pokemon) {
             pokemon.removeVolatile('twist');
-            pokemon.isTwist = false;
+            pokemon.isTwist = '0';
         },
         onEnd(pokemon) {
             this.add('-end', pokemon, 'Twist');
