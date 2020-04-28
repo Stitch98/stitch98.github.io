@@ -13,10 +13,15 @@ export const BattleStatuses: {[k: string]: ModdedPureEffectData} = {
                 if(ally.volatile['twist']) ally.removeVolatile('twist');
             }
         },
+        onBeforeMove(move, pokemon){
+            if(pokemon.volatiles['twist'] && pokemon.type === move.type){
+                move.name = this.TwistedTypes[move.type].prefix + ' ' + move.name;
+            }
+            
+        },
         onModifyMove(move, pokemon) {
             if(pokemon.volatiles['twist'] && pokemon.type === move.type){
                 move.type = this.getTwistedType(this.twisted, move.type);
-                move.name = this.TwistedTypes[move.type].prefix + ' ' + move.name;
             }
 
         },
