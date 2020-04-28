@@ -27,7 +27,7 @@ export const BattleScripts: ModdedBattleScriptsData = {
     },
     side: {
         inherit: true,
-        twist: false,
+        twist: false, // If this field is true, right after switchIn (inside the runSwitch function) the 'twist' volatile is added to the active Pokémon
         getChoice() {
             if (this.choice.actions.length > 1 && this.choice.actions.every(action => action.choice === 'team')) {
                 return `team ` + this.choice.actions.map(action => action.pokemon!.position + 1).join(', ');
