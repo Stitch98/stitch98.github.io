@@ -5,7 +5,7 @@ export const BattleStatuses: { [k: string]: ModdedPureEffectData } = {
         id: 'twist',
         num: 0,
         duration: 0,
-        onStart(pokemon) {
+        onSwitchIn(pokemon) {
             this.twisted = pokemon.isTwist;
             var twistName;
             switch (this.twisted) {
