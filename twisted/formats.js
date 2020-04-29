@@ -1,7 +1,8 @@
-let Formats = [ {name: "[Gen 8] Shared Power",
+let Formats = [ {
+        name: "[Gen 8] Twisted Pokemon",
 		desc: `Once a Pok&eacute;mon switches in, its ability is shared with the rest of the team.`,
 		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/pet-mods-submission-thread.3657184/post-8446318">Shared Power</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/pet-mods-submission-thread.3657184/post-8446318">Twisted Pokemon</a>`,
 		],
 
 		mod: 'gen8',
