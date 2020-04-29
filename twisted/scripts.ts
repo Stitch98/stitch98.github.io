@@ -67,7 +67,7 @@ export const BattleScripts: ModdedBattleScriptsData = {
     // The value returned corresponds to wheter or not it is possible to execute Twisting
     // It seemed like it was used only inside the runMegaEvo() function, but I left it like this just in case it is called somewhere else.
     canMegaEvo(pokemon) {
-        return (pokemon.side.twist) ? false : 'Twist';
+        return !pokemon.side.twist;
     },
     // This function overwrites the normal functioning of the Mega Evolution, so is run when you tick the megaevolution box
     // It activates the side.twist attribute that is checked inside the runSwitch function
@@ -85,7 +85,7 @@ export const BattleScripts: ModdedBattleScriptsData = {
                 ally.isTwist = 'R';
             } i += 1;
         }
-        pokemon.canMegaEvo = 'Twist'; // in the case it isn't the same value as the one returned by canMegaEvo() function
+        pokemon.canMegaEvo = true; // in the case it isn't the same value as the one returned by canMegaEvo() function
         return true;
     }/* ,
     onSwitchIn(pokemon){
