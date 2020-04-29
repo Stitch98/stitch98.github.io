@@ -10,9 +10,9 @@ let Formats = [ {name: "[Gen 8] Shared Power",
 			'Darmanitan-Galar', 'Eternatus', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Melmetal',
 			'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Shedinja', 'Solgaleo', 'Toxapex',
 			'Zacian', 'Zamazenta', 'Zekrom'
-        ]},
+        ],
         onSwitchInPriority: 2,
         onSwitchIn(pokemon){
             if(pokemon.side.twist && pokemon.isTwisted != '0') pokemon.addVolatile('twist');
-        }
+        }}
      ];
