@@ -17,7 +17,6 @@ let Formats = [ {
 		minSourceGen: 8,
         onSwitchInPriority: 2,
         onSwitchIn(pokemon){
-			if(pokemon.side.twist && pokemon.isTwisted != '0') pokemon.addVolatile('twist');
-			else pokemon.canMegaEvo = true;
+			if(!pokemon.side.twist && pokemon.isTwisted == '0') pokemon.canMegaEvo = true;
         }}
      ];

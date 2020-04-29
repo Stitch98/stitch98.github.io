@@ -20,7 +20,7 @@ export const BattleScripts: ModdedBattleScriptsData = {
                         if (action.maxMove) details += ` dynamax`;
                         return `move ${action.moveid}${details}`;
                     case 'switch':
-                        if (action.mega) details += ` mega`; // As you can see, now MegaEvo happens when you switch, not when you choose a move
+                        if (this.twist && action.mega) details += ` mega`; // As you can see, now MegaEvo happens when you switch, not when you choose a move
                     case 'instaswitch':
                         return `switch ${action.target!.position + 1}`;
                     case 'team':
@@ -86,9 +86,9 @@ export const BattleScripts: ModdedBattleScriptsData = {
             } else if (i % 2 == 1) {
                 ally.isTwist = 'R';
             } i += 1;
-            ally.canMegaEvo = false;
-        }
-        pokemon.canMegaEvo = false; // in the case it isn't the same value as the one returned by canMegaEvo() function
+            ally.trySetStatus('twist', pokemon);
+            ally.canMegaEvo = false; // in the case it isn't the same value as the one returned by canMegaEvo() function
+        } 
         return true;
     }
 };

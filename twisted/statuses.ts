@@ -30,6 +30,7 @@ export const BattleStatuses: { [k: string]: ModdedPureEffectData } = {
             for (const ally of side.pokemon) {
                 if (ally.isTwist != '0') ally.isTwist = '0';
             }
+            pokemon.canMegaEvo = false;
         },
         onBeforeMove(move, pokemon) {
             if (pokemon.volatiles['twist'] && pokemon.type === move.type) {
@@ -48,7 +49,6 @@ export const BattleStatuses: { [k: string]: ModdedPureEffectData } = {
         onBeforeSwitchOut(pokemon) {
             pokemon.removeVolatile('twist');
             pokemon.isTwist = '0';
-            pokemon.canMegaEvo = false;
         },
         onEnd(pokemon) {
             this.add('-end', pokemon, 'Twist');
