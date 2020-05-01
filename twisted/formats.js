@@ -15,8 +15,8 @@ let Formats = [ {
 		ruleset: ['Standard GBU', 'Dynamax Clause'],
 		banlist: ['Moody', 'Power Construct'],		
 		minSourceGen: 8,
-        onSwitchInPriority: 2,
-        onSwitchIn(pokemon){
-			if(!pokemon.side.twist && pokemon.isTwisted == '0') pokemon.canMegaEvo = true;
+        onSwitchInPriority: 1,
+        onSwitchIn: function(pokemon){
+			if(pokemon.side.twist && pokemon.isTwisted !== '0') pokemon.addVolatile('twist');
         }}
      ];

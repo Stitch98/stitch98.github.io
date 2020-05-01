@@ -20,7 +20,7 @@ export const BattleScripts: ModdedBattleScriptsData = {
                         if (action.maxMove) details += ` dynamax`;
                         return `move ${action.moveid}${details}`;
                     case 'switch':
-                        if (this.twist && action.mega) details += ` mega`; // As you can see, now MegaEvo happens when you switch, not when you choose a move
+                        if (action.mega) details += ` mega`; // As you can see, now MegaEvo happens when you switch, not when you choose a move
                     case 'instaswitch':
                         return `switch ${action.target!.position + 1}`;
                     case 'team':
@@ -34,6 +34,7 @@ export const BattleScripts: ModdedBattleScriptsData = {
             const index = this.getChoiceIndex(true);
             if (index >= this.active.length) return false;
             const pokemon: Pokemon = this.active[index];
+            this.pokemon = true;
 
             switch (this.requestState) {
                 case 'switch':
@@ -46,7 +47,7 @@ export const BattleScripts: ModdedBattleScriptsData = {
                     break;
                 case 'move':
                     // Checking if the Pokémon has to Twist, no need to specify L or R as they where saved inside the Pokémon
-                    if (this.twist) {
+                    if(this.twist) {
                         return this.emitChoiceError(`Can't pass: You chose to Twist, you have to switch.`);
                     }
                     if (!pokemon.fainted) {
@@ -69,7 +70,7 @@ export const BattleScripts: ModdedBattleScriptsData = {
     canMegaEvo(pokemon) {
         const noTwist = ['Arceus', 'Silvally', 'Meloetta', 'Darmanitan', 'Morpeko', 'Castform'];
         if(noTwist.includes(pokemon.name)) return false;
-        return !pokemon.side.twist;
+        return pokemon.isTwist === '0';
     },
     // This function overwrites the normal functioning of the Mega Evolution, so is run when you tick the megaevolution box
     // It activates the side.twist attribute that is checked inside the runSwitch function
@@ -78,17 +79,16 @@ export const BattleScripts: ModdedBattleScriptsData = {
         if (pokemon.isTwist) return false;
         const side = pokemon.side;
         var i = 0;
-        if (side.twist) return false;
-        side.twist = true; 
         for (const ally of side.pokemon) {
             if (i % 2 == 0) {
                 ally.isTwist = 'L';
             } else if (i % 2 == 1) {
                 ally.isTwist = 'R';
             } i += 1;
-            ally.trySetStatus('twist', pokemon);
+            ally.addVolatile('twist');
             ally.canMegaEvo = false; // in the case it isn't the same value as the one returned by canMegaEvo() function
         } 
+        side.twist = true;
         return true;
     }
 };
