@@ -61,7 +61,7 @@ export const BattleStatuses: { [k: string]: ModdedPureEffectData } = {
         },
         twisted: '0',
         getTwistedType(type, lr) {
-            let TwistedTypes: {
+            const TwistedTypes = {
                 Grass: { L: 'Rock', R: 'Electric', prefix: 'Sprouting' },
                 Fire: { L: 'Grass', R: 'Fighting', prefix: 'Blazing' },
                 Water: { L: 'Fire', R: 'Poison', prefix: 'Soaking' },
