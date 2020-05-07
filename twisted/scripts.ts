@@ -1,11 +1,12 @@
-export const BattleScripts: ModdedBattleScriptsData = {
+export const BattleScripts = {
     pokemon: {
         inherit: true,
         isTwist: '0' // This field indicates if the Pokémon has to twist left or right, '0' means it doesnt have to twist
     },
     side: {
         inherit: true,
-        twist: false, // If this field is true, right after switchIn (inside the runSwitch function) the 'twist' volatile is added to the active Pokémon
+        // If the following field is true, right after switchIn (inside the onSwitchIn trigger inside formats.ts) the 'twist' volatile is added to the active Pokémon
+        twist: false, 
         getChoice() {
             if (this.choice.actions.length > 1 && this.choice.actions.every(action => action.choice === 'team')) {
                 return `team ` + this.choice.actions.map(action => action.pokemon!.position + 1).join(', ');
@@ -30,7 +31,7 @@ export const BattleScripts: ModdedBattleScriptsData = {
                 }
             }).join(', ');
         },
-        choosePass(): boolean | Side {
+        choosePass: function() {
             const index = this.getChoiceIndex(true);
             if (index >= this.active.length) return false;
             const pokemon: Pokemon = this.active[index];
@@ -61,21 +62,21 @@ export const BattleScripts: ModdedBattleScriptsData = {
             // tslint:disable-next-line:no-object-literal-type-assertion
             this.choice.actions.push({
                 choice: 'pass',
-            } as ChosenAction);
+            });
             return true;
         }
     },
     // The value returned corresponds to wheter or not it is possible to execute Twisting
     // It seemed like it was used only inside the runMegaEvo() function, but I left it like this just in case it is called somewhere else.
-    canMegaEvo(pokemon) {
+    canMegaEvo: function(pokemon) {
         const noTwist = ['Arceus', 'Silvally', 'Meloetta', 'Darmanitan', 'Morpeko', 'Castform'];
-        if(noTwist.includes(pokemon.name)) return false;
+        if(noTwist.includes(pokemon.species.name)) return false;
         return pokemon.isTwist === '0';
     },
     // This function overwrites the normal functioning of the Mega Evolution, so is run when you tick the megaevolution box
     // It activates the side.twist attribute that is checked inside the runSwitch function
     // and it also sets the value for the isTwist attribute inside pokemon, that I'm assuming is preserved after switch in (like canMegaEvo and canDynamax)
-    runMegaEvo(pokemon) {
+    runMegaEvo: function(pokemon) {
         if (pokemon.isTwist) return false;
         const side = pokemon.side;
         var i = 0;
