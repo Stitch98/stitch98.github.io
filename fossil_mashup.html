@@ -349,6 +349,104 @@
             document.getElementById("tail").value = tr;
             fillTable();
         }
+        
+        function generateText(){
+            let buffer = "", buffer2 = "", name = "";
+            let val, bst, most, i = 0;
+            let primary, hidden, secondary;
+            let moves = [""];
+            for(f1 in row){
+                for(f2 in row){
+                    if(f1[0].localeCompare(f2[0]) != 0){
+                        name += f2[0].substr(0, f2[1]) + head[0].substr(f1[1], f1[0].length - 1);
+                        buffer += name.toLocaleLowerCase() + ': {</br>' +
+                                'num: ' + 900 + (i++) + ',</br>' +
+                                'name: "' + name + '",</br>' +
+                                'types: ["' + f1[2] + ((f1[2].localeCompare(f2[2]) != 0)? ( '", "' + f2[2]) :'') + '"],</br>' +
+                                'gender: "N",</br>' +
+                                'baseStats: {';
+                        for (var i = 0; i < 6; i++) {
+                            val[i] = ((f1[6 + i] + f2[6 + i]) * 5 + 50);
+                            bst += val[i];
+                            if (val[i] < most[1]) {
+                                most[0] = i;
+                                most[1] = val[i];
+                            }
+                        }
+
+                        if (bst == 510) {
+                            val[most[0]] -= 5;
+                            bst -= 5;
+                        } else if (bst == 500) {
+                            val[most[0]] += 5;
+                            bst += 5;
+                        } else if (bst == 490) {
+                            val[most[0]] += 15;
+                            bst += 15;
+                        }
+                        if (head[12] > tail[12]) {
+                            tmp = val[1];
+                            val[1] = val[2];
+                            val[2] = tmp;
+                            tmp = val[3];
+                            val[3] = val[4];
+                            val[4] = tmp;
+                        }
+                        
+                        for (let j = 0; j < 6; j++) {
+                            switch(j){
+                                case 0:
+                                    buffer += 'hp:' + val[j] + ', ';
+                                    break;
+                                case 1:
+                                    buffer += 'atk:' + val[j] + ', ';
+                                    break;
+                                case 2:
+                                    buffer += 'def:' + val[j] + ', ';
+                                    break;
+                                case 3:
+                                    buffer += 'spa:' + val[j] + ', ';
+                                    break;
+                                case 4:
+                                    buffer += 'spd:' + val[j] + ', ';
+                                    break;
+                                case 5:
+                                    buffer += 'spe:' + val[j];
+                                    break;
+                                default: break;
+                            }
+                            
+                        }
+
+                        buffer += '},</br>' +
+                                'abilities: {';
+                        primary = head[3];
+                        hidden = (tail[5] != primary) ? (tail[5]) : (tail[3]);
+                        if (head[3] == head[5] || tail[3] == tail[5]) secondary = null;
+                        else if (head[4] != "" && head[4] != primary && head[4] != hidden) secondary = head[4];
+                        else if (tail[4] != "" && tail[4] != primary && tail[4] != hidden) secondary = tail[4];
+                        else if (tail[3] != primary && tail[3] != hidden) secondary = tail[3];
+                        else secondary = null;
+                        buffer += '0: "' + primary + ((secondary == null)? '' : ('", 1: "' + secondary)) + '", H: "' + hidden + '"';
+                        buffer += '},</br>' +
+                                'heightm: '+ (f1[34] / 2 + f2[34] / 2) + ',</br>' +
+                                'weightkg: '+ (f1[35] / 2 + f2[35] / 2) + ',</br>' +
+                                'color: "Gray",</br>' +
+                                'eggGroups: ["Undiscovered"],</br>';
+                        buffer2 += name.toLocaleLowerCase() + ': {</br>' +
+                                'learnset: {';
+                        for(move in f1[14]) buffer2 += move.toLocaleLowerCase() + ': ["8L1"], </br>';
+                        moves = ["Ancient Power", "Earth Power", "Rock Polish", "Rock Slide", "Rock Tomb", "Stealth Rock", "Stone Edge", "Attract", "Facade", "Protect", "Rest", "Round"];
+                        for(move in moves) buffer2 += move.toLocaleLowerCase() + ': ["8L1"], </br>';
+                        buffer2 += ' Snore: [ "8L1" ] </br>} </br> }</br>';
+                    }
+                }
+            }
+            document.getElementById('pokedex').innerHTML = buffer;
+            document.getElementById('learnsets').innerHTML = buffer2;
+
+        }
+
     </script>
 </body>
 
