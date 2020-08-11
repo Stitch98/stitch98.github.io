@@ -1,4 +1,3 @@
-
 export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 	/*
 	// Example
@@ -36,7 +35,7 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
         shortDesc: "User switches, Twisting the incoming Pokémon.",
 		name: "Twist",		
 		isNonstandard: "Custom",
-		pp: 1,
+		pp: 999,
 		priority: 6,
 		alwaysHit: true,
 		flags: {},
@@ -44,7 +43,7 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 			const side = pokemon.side;
 			let i = 0;
 			for(const ally of side.pokemon)
-			{ ally.canMegaEvo = (i++ % 2 == 0) ? 'R' : 'L'; }
+				ally.canMegaEvo = (i++ % 2 == 0) ? 'R' : 'L'; 
 		},
 		selfSwitch: true,
 		secondary: null,
